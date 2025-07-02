@@ -1,0 +1,9 @@
+Hex Code	Approx. Use
+#fcf4e2	Background beige
+#e89a2e	Outer ring yellow/orange
+#322313	Dark brown (text outlines)
+#ab5313	Antler/moose mid-tone
+#739394	Wrench blue-gray
+#cc6914	Brighter orange accents
+#5d665d	Dark gray-green shading
+#553115	Moose head shading
