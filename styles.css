@@ -41,7 +41,7 @@
 
 /* Card look */
 .form-card {
-  background: hsl(180, 1%, 72%);                            /* white background */
+  background: hsl(0, 0%, 45%);                            /* white background */
   padding: 2rem;                               /* space inside */
   border-radius: 8px;                          /* rounded corners */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);    /* soft shadow */
