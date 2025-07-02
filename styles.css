@@ -1,47 +1,43 @@
- body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fcf4e2;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-    .navbar {
-      background-color: #333;
-      overflow: hidden;
-    }
+.navbar {
+  background-color: #ab5313;
+  overflow: hidden;
+}
 
-    .navbar a {
-      float: left;
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 14px 20px;
-      text-decoration: none;
-    }
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
 
-    .navbar a:hover {
-      background-color: #575757;
-    }
+.navbar a:hover {
+  background-color: #739394;
+}
 
-    #logo {
-        width: 100px;
-    }
+#logo {
+  display: block;
+  margin: 1rem auto; /* top/bottom 1rem, left/right auto */
+  width: 500px; 
+}
 
-    .top-stuff {
-      display: grid;
-      grid-template-columns: auto max-content;
-      align-items: center;
-      column-gap: 1rem;
-      padding-left: 1rem;
-    }
-
-    .form-container {
-  display: flex;
-  justify-content: center;   /* horizontal centering */
-  padding: 2rem 1rem;        /* top/bottom and a little side padding */
+.form-container {
+display: flex;
+justify-content: center;   /* horizontal centering */
+padding: 2rem 1rem;        /* top/bottom and a little side padding */
 }
 
 /* Card look */
 .form-card {
-  background: hsl(0, 0%, 45%);                            /* white background */
+  background: #e89a2e;                            /* white background */
   padding: 2rem;                               /* space inside */
   border-radius: 8px;                          /* rounded corners */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);    /* soft shadow */
