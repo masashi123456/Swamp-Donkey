@@ -64,3 +64,22 @@
 .form-card button {
   margin-top: 0.5rem;
 }
+
+
+
+/*footer*/
+footer{
+    background-color: rgb(240, 171, 93);
+    padding: 2rem;
+}
+
+.media{
+    display: flex;
+    justify-content: space-between;
+    padding: 32px;
+    
+}
+
+.media img{
+    width:32px;
+}
