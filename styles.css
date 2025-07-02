@@ -65,17 +65,36 @@ padding: 2rem 1rem;        /* top/bottom and a little side padding */
 
 /*footer*/
 footer{
-    background-color: rgb(240, 171, 93);
+    background: linear-gradient(rgb(231, 152, 60), rgb(238, 192, 113));
     padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-top: 5px solid rgb(214, 152, 38)
 }
 
 .media{
     display: flex;
-    justify-content: space-between;
-    padding: 32px;
+    justify-content: left;
+    gap: 2rem;
     
 }
 
+
 .media img{
     width:32px;
+    filter: drop-shadow(0 0 4px grey);
 }
+
+.media a:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.4));
+}
+
+.foot{
+    line-height: 2;
+    font-size: 1rem;
+}
+
+
+    
+
+
