@@ -24,20 +24,9 @@ body {
 }
 
 #logo {
-    width: 100px;
-}
-
-.top-stuff {
-  display: grid;
-  grid-template-columns: auto max-content;
-  align-items: center;
-  column-gap: 1rem;
-  padding-left: 1rem;
-}
-
-.item1 {
-  color: #739394;
-  font-family: Arial, Helvetica, sans-serif;
+  display: block;
+  margin: 1rem auto; /* top/bottom 1rem, left/right auto */
+  width: 500px; 
 }
 
 .form-container {
@@ -48,7 +37,7 @@ padding: 2rem 1rem;        /* top/bottom and a little side padding */
 
 /* Card look */
 .form-card {
-  background: #739394;                            /* white background */
+  background: #e89a2e;                            /* white background */
   padding: 2rem;                               /* space inside */
   border-radius: 8px;                          /* rounded corners */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);    /* soft shadow */
