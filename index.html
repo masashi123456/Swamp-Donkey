@@ -4,10 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swamp Donkey Home Page
-        
+
     </title>
 </head>
 <body>
-    
+    <div>
+        <form action="https://formspree.io/f/mjkrzwkk" method="POST">
+            <label for="vin">Vehicle VIN:</label><br>
+            <input type="text" id="vin" name="vin" pattern="[A-HJ-NPR-Z0-9]{17}" required>
+            <small>Enter a valid 17-character VIN (no I, O, or Q).</small><br><br>
+
+            <label>Your Email:</label><br>
+            <input type="email" name="email" required><br><br>
+
+            <label>Message:</label><br>
+            <textarea name="message" required></textarea><br><br>
+
+            <button type="submit">Send</button>
+        </form>
+
+    </div>
 </body>
 </html>
