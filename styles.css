@@ -20,3 +20,47 @@
     .navbar a:hover {
       background-color: #575757;
     }
+
+    #logo {
+        width: 100px;
+    }
+
+    .top-stuff {
+      display: grid;
+      grid-template-columns: auto max-content;
+      align-items: center;
+      column-gap: 1rem;
+      padding-left: 1rem;
+    }
+
+    .form-container {
+  display: flex;
+  justify-content: center;   /* horizontal centering */
+  padding: 2rem 1rem;        /* top/bottom and a little side padding */
+}
+
+/* Card look */
+.form-card {
+  background: hsl(168, 3%, 65%);                            /* white background */
+  padding: 2rem;                               /* space inside */
+  border-radius: 8px;                          /* rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);    /* soft shadow */
+  max-width: 500px;                            /* don’t get too wide */
+  width: 100%;                                 /* but be responsive */
+}
+
+/* Optional: tighten up form fields */
+.form-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-card label {
+  margin-top: 1rem;
+}
+
+.form-card input,
+.form-card textarea,
+.form-card button {
+  margin-top: 0.5rem;
+}
