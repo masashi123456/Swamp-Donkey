@@ -1,13 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swamp Donkey Home Page
-        
-    </title>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="David Lunceford, Masashi Ota"> 
+    <meta name="description" content="Home page for Swamp Donkey"> 
+    <meta property="og:title" content="Swamp Donkey"> 
+    <meta property="og:type" content="Web Page"> 
+    <meta property="og:image" content="#"> 
+    <meta property="og:url" content="https://github.com/masashi123456/Swamp-Donkey.git"> 
+    <title>SWAMP DONKEY</title> 
+    <link rel="icon" href="images/favicon.ico"> 
+    <link rel = "stylesheet" href = "styles/main.css"> 
+    <link rel = "stylesheet" href = "styles/medium.css"> 
+    <link rel = "stylesheet" href = "styles/large.css"> 
+    <link rel="stylesheet" href="styles/normalize.css"> 
 </head>
+
+
+<h1>Swamp Donkey Mobile Mechanics</h1>
+<img src="images/SWAMP DONKEY.png" alt="company logo">
 <body>
-    
+    <div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+    <div>
+        <form action="https://formspree.io/f/mjkrzwkk" method="POST">
+            <label for="vin">Vehicle VIN:</label><br>
+            <input type="text" id="vin" name="vin" pattern="[A-HJ-NPR-Z0-9]{17}" required>
+            <small>Enter a valid 17-character VIN (no I, O, or Q).</small><br><br>
+
+            <label>Your Email:</label><br>
+            <input type="email" name="email" required><br><br>
+
+            <label>Describe the problem you're experiencing:</label><br>
+            <textarea name="message" required></textarea><br><br>
+
+            <button type="submit">Send</button>
+        </form>
+
+    </div>
 </body>
 </html>
