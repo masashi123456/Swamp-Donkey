@@ -54,6 +54,21 @@
         .price-accent-text {
             color: var(--accent-bright-orange);
         }
+        /* Style for the new Order Now button */
+        .order-button {
+            background-color: var(--accent-orange);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .order-button:hover {
+            background-color: var(--accent-bright-orange);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
@@ -62,8 +77,8 @@
         
         <!-- Header Section -->
         <div class="text-center mb-8">
-            <!-- Replaced placeholder with the actual logo path -->
-            <img src="images/SWAMP DONKEY.png" alt="Swamp Donkey Logo" class="mx-auto mb-4 h-24 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/200x100/fcf4e2/322313?text=Logo+Not+Found';">
+            <!-- Increased logo size from h-24 to h-32 -->
+            <img src="images/SWAMP DONKEY.png" alt="Swamp Donkey Logo" class="mx-auto mb-4 h-32 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/200x100/fcf4e2/322313?text=Logo+Not+Found';">
             <h1 class="text-3xl font-bold main-heading">Instant Quote Generator</h1>
             <p class="text-gray-500 mt-2">Select your vehicle and the service you need for an instant price estimate.</p>
         </div>
@@ -182,13 +197,33 @@
                 const price = serviceData[vehicle];
                 const description = serviceData.description;
 
+                let priceString;
                 let priceHTML;
                 if (typeof price === 'string' && price.includes('/hr')) {
+                     priceString = `$${price} (plus parts)`;
                      priceHTML = `<p class="text-4xl font-bold price-accent-text">$${price}</p>
                                   <p class="text-gray-500 mt-1">(plus parts)</p>`;
                 } else {
+                     priceString = `$${price}`;
                      priceHTML = `<p class="text-5xl font-bold price-accent-text">$${price}</p>`;
                 }
+
+                // --- Mailto link generation ---
+                const email = "swampdonkeymobilemechanics@gmail.com";
+                const subject = `Service Request: ${service} for a ${vehicle}`;
+                const body = `Hello,
+I would like to schedule the following service:
+
+Service: ${service}
+Vehicle Type: ${vehicle}
+Estimated Quote: ${priceString}
+
+Please let me know your availability.
+
+Thank you,
+[Your Name]`;
+                const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
 
                 quoteResultDiv.innerHTML = `
                     <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 scale-0 origin-bottom animate-scale-in">
@@ -197,6 +232,9 @@
                             ${priceHTML}
                         </div>
                         <p class="text-gray-600 max-w-md mx-auto">${description}</p>
+                        <div class="mt-6">
+                            <a href="${mailtoLink}" class="order-button">Order Now</a>
+                        </div>
                         <p class="text-xs text-gray-400 mt-4">*This is an estimate. Prices may vary based on specific vehicle make/model and parts required.</p>
                     </div>
                 `;
