@@ -15,7 +15,22 @@
     <link rel="stylesheet" href="styles/normalize.css"> 
 </head>
 <body>
-    
+    <h2>Request a Service:</h2>
+    <form action="https://formspree.io/f/mjkrzwkk" method="POST">
+      <label for="vin">Vehicle VIN:</label><br>
+      <input type="text" id="vin" name="vin" pattern="[A-HJ-NPR-Z0-9]{17}" required>
+      <br><small>Enter a valid 17-character VIN (no I, O, or Q).</small><br><br>
+
+      <label>Your Email:</label><br>
+      <input type="email" name="email" required><br><br>
+
+      <label>Describe the problem you’re experiencing:</label><br>
+      <textarea name="message" required></textarea><br><br>
+
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
 </body>
 <footer>
     <div class="media">
