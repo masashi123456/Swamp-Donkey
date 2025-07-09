@@ -3,15 +3,18 @@ body {
     font-family: Arial, sans-serif;
     background-color: #fcf4e2;
     font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
 }
 
 .navbar {
   background-color: #ab5313;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .navbar a {
-  float: left;
   display: block;
   color: white;
   text-align: center;
@@ -26,7 +29,15 @@ body {
 #logo {
   display: block;
   margin: 1rem auto; /* top/bottom 1rem, left/right auto */
-  width: 500px; 
+  width: 320px; 
+  opacity:0;
+  animation: fadeIn 2s ease-in forwards;
+}
+
+@keyframes fadeIn{
+  to{
+    opacity:1;
+  }
 }
 
 .form-container {
@@ -68,7 +79,8 @@ footer{
     background: linear-gradient(rgb(231, 152, 60), rgb(238, 192, 113));
     padding: 2rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-top: 5px solid rgb(214, 152, 38)
+    border-top: 5px solid rgb(214, 152, 38);
+    max-width: 100%;
 }
 
 .media{
@@ -93,6 +105,17 @@ footer{
     line-height: 2;
     font-size: 1rem;
 }
+
+.foot p{
+    overflow-wrap: break-word;
+    max-width: 100%;
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+
+
+
+
 
 
     
