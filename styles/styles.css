@@ -9,7 +9,15 @@
   .navbar {
     background-color: #ab5313;
     overflow: hidden;
+    display:flex;
+    flex-direction: row;
+    width: 100%;
   }
+  .navbar > * {
+    flex: 1;
+    text-align: center;
+  }
+  
 
   .navbar a {
     float: left;
