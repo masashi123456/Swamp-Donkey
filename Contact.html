@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="David Lunceford, Masashi Ota"> 
+    <meta name="description" content="Home page for Swamp Donkey"> 
+    <meta property="og:title" content="Swamp Donkey"> 
+    <meta property="og:type" content="Web Page"> 
+    <meta property="og:image" content="#"> 
+    <meta property="og:url" content="https://github.com/masashi123456/Swamp-Donkey.git"> 
+    <title>SWAMP DONKEY</title> 
+    <link rel="icon" href="images/favicon.ico"> 
+    <link rel = "stylesheet" href = "styles/base.css">  
+    <link rel = "stylesheet" href = "styles/styles.css">  
+    <link rel = "stylesheet" href = "styles/large.css">  
+    <link rel="stylesheet" href="styles/normalize.css"> 
+</head>
+<header>
+    <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
+</header>
+<body>
+    <div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+<div class="container">
+    <h1>Swamp Donkey Contact Form</h1>
+    <form action="mailto:contact@swampdonkey.com" method="POST" enctype="text/plain">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Your E-mail address</label>
+      <input type="email" id="email" name="mail-address" required />
+
+      <label for="message">Contents</label>
+      <textarea id="message" name="contents" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+<footer>
+    <div class="media">
+        <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" loading="lazy">
+            <img src="images/fa.png" alt="facebook">
+        </a>
+        <a id="instagram" href="https://www.instagram.com/">
+            <img src="images/insta.webp" alt="facebook" loading="lazy">
+        </a>
+        <a id="x" href="https://x.com/?lang=en">
+            <img src="images/x.webp" alt="x" loading="lazy">
+        </a>
+    </div>
+
+    <div class="foot">
+        <p id="year">&copy; <span id="copy+year"></span>Swamp Donkey</p>
+        <p>📞 +1 208-547-8375</p>
+        <p id="mail">
+            <span>📧</span>
+
+            <span>swampdonkeymobilemechanics@gmail.com</span>
+
+            </p>
+        <p>🗺️ 235 S 4th W Rexburg, ID 83440</p>
+        <p id="lastModified"></p>
+    </div>
+</footer>
+
+</body>
+</html>
