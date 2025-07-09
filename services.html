@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="David Lunceford, Masashi Ota">
+    <meta name="description" content="Services and pricing for Swamp Donkey Mobile Mechanic in Rexburg, ID.">
+    <meta property="og:title" content="Swamp Donkey Services">
+    <meta property="og:type" content="Web Page">
+    <meta property="og:image" content="#">
+    <meta property="og:url" content="https://github.com/masashi123456/Swamp-Donkey.git">
+    <title>Services - SWAMP DONKEY</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/large.css">
+    <link rel="stylesheet" href="styles/normalize.css">
+    
+    <style>
+        body {
+            background-color: #f4f4f4; /* A light gray background for the main area */
+        }
+        /* Style for the navigation bar container */
+        .navbar {
+            background-color: #fdf2de; /* White background for the bar */
+            padding: 15px 10px;      /* Add some space around the buttons */
+            text-align: center;      /* Center the buttons within the bar */
+        }
+        /* Style for the navigation bar buttons */
+        .navbar a {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 5px;
+            background-color: #f08c00; /* A nice shade of orange */
+            color: #ffffff;            /* White text for better contrast */
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+        main {
+            padding: 2rem 1rem;
+        }
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        .about-image img {
+            max-width: 250px;
+            height: auto;
+            border-radius: 8px;
+        }
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-top: 0;
+        }
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        /* Styles for Services List */
+        .services-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .service-category h2 {
+            font-size: 2.2rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #f08c00;
+            padding-bottom: 0.5rem;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .service-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .service-card .description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-section {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<header>
+    <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
+</header>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="quote.html">Quick Quote</a>
+        <a href="index.html#about">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <main>
+        <section id="about" class="about-section">
+            <div class="about-image">
+                <img src="images/wrench.png" alt="Wrench and gear icon for Swamp Donkey Mobile Mechanic">
+            </div>
+            <div class="about-text">
+                <h2>Your Trusted Mobile Mechanic in Rexburg</h2>
+                <p>
+                    Stuck at home, work, or on the side of the road? At Swamp Donkey Mobile Mechanic, we bring the garage to you! We understand that car trouble is stressful and inconvenient. That's why we're dedicated to providing honest, reliable, and high-quality auto repair services right where you are. As a proud part of the Rexburg community, we're committed to getting our neighbors back on the road safely and quickly, without the hassle of a traditional repair shop.
+                </p>
+            </div>
+        </section>
+
+        <div class="services-container">
+            <section class="service-category">
+                <h2>Common Maintenance</h2>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <h3>Oil Changes</h3>
+                        <p class="description">Replacing engine oil and filter.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Tire Rotations</h3>
+                        <p class="description">Rotating tires to ensure even wear.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Fluid Checks and Top-Offs</h3>
+                        <p class="description">Checking and replenishing various fluids like coolant, brake fluid, and power steering fluid.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Belt and Hose Inspections/Replacements</h3>
+                        <p class="description">Checking for wear and tear on belts and hoses, and replacing them as needed.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Filter Replacements</h3>
+                        <p class="description">Replacing air filters, cabin air filters, and fuel filters.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Battery Testing and Replacement</h3>
+                        <p class="description">Testing battery health and replacing it if necessary.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Pre-Purchase Inspections</h3>
+                        <p class="description">Thoroughly inspecting a used vehicle before a customer buys it.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Seasonal Inspections</h3>
+                        <p class="description">Checking a vehicle for readiness for specific seasons, like winterizing checks.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="service-category">
+                <h2>Repairs and Diagnostics</h2>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <h3>Brake Services</h3>
+                        <p class="description">Inspecting brakes, replacing brake pads and rotors.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Diagnostic Scans</h3>
+                        <p class="description">Using diagnostic tools to read trouble codes and pinpoint issues.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Minor Engine Repairs</h3>
+                        <p class="description">Addressing issues like misfires, sensor replacements, and spark plug replacement.</p>
+                    </div>
+                     <div class="service-card">
+                        <h3>Starting and Charging System Repairs</h3>
+                        <p class="description">Diagnosing and repairing issues with alternators, starters, and wiring.</p>
+                    </div>
+                     <div class="service-card">
+                        <h3>Cooling System Repairs</h3>
+                        <p class="description">Diagnosing and repairing issues like radiator leaks and thermostat replacement.</p>
+                    </div>
+                     <div class="service-card">
+                        <h3>Suspension and Steering Repairs</h3>
+                        <p class="description">Replacing shock absorbers, struts, control arms, and other components.</p>
+                    </div>
+                     <div class="service-card">
+                        <h3>Exhaust System Repairs</h3>
+                        <p class="description">Repairing or replacing mufflers and pipes.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Electrical System Repairs</h3>
+                        <p class="description">Diagnosing and repairing issues with wiring, fuses, lights, and windows.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Fuel System Repairs</h3>
+                        <p class="description">Replacing fuel pumps, fuel filters, and fuel injectors.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="service-category">
+                <h2>Emergency and Roadside Assistance</h2>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <h3>Jump Starts</h3>
+                        <p class="description">Providing battery boosts for dead batteries.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Flat Tire Repair/Replacement</h3>
+                        <p class="description">Patching tires or installing spare tires.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Fuel Delivery</h3>
+                        <p class="description">Bringing fuel to a stranded vehicle.</p>
+                    </div>
+                     <div class="service-card">
+                        <h3>Lockout Services</h3>
+                        <p class="description">Assisting with unlocking vehicles.</p>
+                    </div>
+                     <div class="service-card">
+                        <h3>On-site Minor Repairs</h3>
+                        <p class="description">Performing quick fixes to get a vehicle running after a breakdown.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+    <div class="media">
+        <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" loading="lazy">
+            <img src="images/fa.png" alt="facebook">
+        </a>
+        <a id="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" loading="lazy">
+            <img src="images/insta.webp" alt="instagram">
+        </a>
+        <a id="x" href="https://x.com/?lang=en" target="_blank" rel="noopener noreferrer" loading="lazy">
+            <img src="images/x.webp" alt="x">
+        </a>
+        <a id="better-option" href="https://www.facebook.com/p/Griffin-Auto-Services-61576941613943/" title="A better option" target="_blank" rel="noopener noreferrer">
+            <img src="images/wrench.png" alt="A better option">
+        </a>
+    </div>
+
+    <div class="foot">
+        <p id="year">&copy; <span id="copy+year">2025</span>Swamp Donkey</p>
+        <p>📞 +1 208-547-8375</p>
+        <p id="mail">
+            <span>📧</span>
+            <span>swampdonkeymobilemechanics@gmail.com</span>
+        </p>
+        <p>🗺️ 235 S 4th W Rexburg, ID 83440</p>
+        <p id="lastModified"></p>
+    </div>
+</footer>
+
+</body>
+</html>
