@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instant Quote Generator - Swamp Donkey</title>
-    <!-- Tailwind CSS for styling -->
+    <title>Quick Quote - Swamp Donkey</title>
+    
+    <!-- Stylesheets from main page for consistency -->
+    <link rel="icon" href="images/favicon.ico"> 
+    <link rel="stylesheet" href="styles/base.css">  
+    <link rel="stylesheet" href="styles/styles.css">  
+    <link rel="stylesheet" href="styles/large.css">  
+    <link rel="stylesheet" href="styles/normalize.css">
+
+    <!-- Tailwind CSS for styling the quote card -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         /* --- Custom Color Palette --- */
         :root {
@@ -23,11 +32,16 @@
         /* Applying the custom colors */
         body {
             font-family: 'Inter', sans-serif;
+            /* The background color will be controlled by your external CSS now */
+        }
+        .quote-container {
             background-color: var(--bg-beige);
+            padding: 2rem 1rem; /* Add some padding for smaller screens */
         }
         .quote-card {
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease-in-out;
+            margin: 0 auto; /* Center the card */
         }
         .quote-result {
             transition: all 0.5s ease-in-out;
@@ -41,10 +55,10 @@
             color: var(--text-dark-brown);
             font-weight: 500;
         }
-        .custom-select {
+        .custom-input, .custom-select {
             border-color: #d1d5db; /* Default gray border */
         }
-        .custom-select:focus {
+        .custom-input:focus, .custom-select:focus {
             outline: 2px solid transparent;
             outline-offset: 2px;
             border-color: var(--accent-orange);
@@ -54,8 +68,8 @@
         .price-accent-text {
             color: var(--accent-bright-orange);
         }
-        /* Style for the new Order Now button */
-        .order-button {
+        /* Style for buttons */
+        .action-button {
             background-color: var(--accent-orange);
             color: white;
             padding: 0.75rem 1.5rem;
@@ -63,103 +77,131 @@
             font-weight: 600;
             text-decoration: none;
             display: inline-block;
+            border: none;
+            cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
         }
-        .order-button:hover {
+        .action-button:hover {
             background-color: var(--accent-bright-orange);
             transform: translateY(-2px);
         }
+        .vin-error-message {
+            color: #ef4444; /* Red color for error */
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem; /* Reserve space to prevent layout shift */
+        }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
+<body>
 
-    <div class="quote-card bg-white w-full max-w-2xl p-6 sm:p-8 rounded-2xl">
-        
-        <!-- Header Section -->
-        <div class="text-center mb-8">
-            <!-- Increased logo size from h-24 to h-32 -->
-            <img src="images/SWAMP DONKEY.png" alt="Swamp Donkey Logo" class="mx-auto mb-4 h-32 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/200x100/fcf4e2/322313?text=Logo+Not+Found';">
-            <h1 class="text-3xl font-bold main-heading">Instant Quote Generator</h1>
-            <p class="text-gray-500 mt-2">Select your vehicle and the service you need for an instant price estimate.</p>
-        </div>
+    <header>
+        <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
+    </header>
 
-        <!-- Form Section -->
-        <div class="space-y-6">
-            <!-- Vehicle Type Selection -->
-            <div>
-                <label for="vehicleType" class="block text-sm form-label mb-1">1. Select Vehicle Type</label>
-                <select id="vehicleType" name="vehicleType" class="custom-select mt-1 block w-full pl-3 pr-10 py-2 text-base sm:text-sm rounded-md shadow-sm">
-                    <option value="Car">Car</option>
-                    <option value="SUV">SUV</option>
-                    <option value="Truck">Truck</option>
-                    <option value="Big Vehicle">Big Vehicle (RV, Commercial Van)</option>
-                </select>
-            </div>
-
-            <!-- Service Category Selection -->
-            <div>
-                <label for="serviceCategory" class="block text-sm form-label mb-1">2. Select Service Category</label>
-                <select id="serviceCategory" name="serviceCategory" class="custom-select mt-1 block w-full pl-3 pr-10 py-2 text-base sm:text-sm rounded-md shadow-sm">
-                    <option value="">-- Choose a Category --</option>
-                </select>
-            </div>
-
-            <!-- Specific Service Selection -->
-            <div>
-                <label for="specificService" class="block text-sm form-label mb-1">3. Select Specific Service</label>
-                <select id="specificService" name="specificService" class="custom-select mt-1 block w-full pl-3 pr-10 py-2 text-base sm:text-sm rounded-md shadow-sm">
-                    <option value="">-- Choose a Service --</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Quote Result Section -->
-        <div id="quoteResult" class="quote-result mt-8 text-center">
-            <!-- The result will be displayed here -->
-        </div>
-
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="quote.html" target="_blank">Quick Quote</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="Contact.html">Contact</a>
     </div>
+
+    <main class="quote-container">
+        <div class="quote-card bg-white w-full max-w-2xl p-6 sm:p-8 rounded-2xl">
+            
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold main-heading">Instant Quote Generator</h1>
+                <p class="text-gray-500 mt-2">Start by entering your vehicle's VIN below.</p>
+            </div>
+
+            <!-- VIN Entry Section -->
+            <div id="vinEntryContainer">
+                <label for="vinInput" class="block text-sm form-label mb-1">Vehicle VIN</label>
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <input type="text" id="vinInput" name="vinInput" class="custom-input mt-1 block w-full px-3 py-2 text-base sm:text-sm rounded-md shadow-sm flex-grow" placeholder="Enter 11-17 digit VIN">
+                    <button id="vinSubmitButton" class="action-button">Continue</button>
+                </div>
+                <p id="vinError" class="vin-error-message text-center sm:text-left"></p>
+            </div>
+
+            <!-- Service Selection Section (Initially Hidden) -->
+            <div id="serviceSelectorContainer" class="space-y-6" style="display: none;">
+                <div>
+                    <label for="vehicleType" class="block text-sm form-label mb-1">1. Select Vehicle Type</label>
+                    <select id="vehicleType" name="vehicleType" class="custom-select mt-1 block w-full pl-3 pr-10 py-2 text-base sm:text-sm rounded-md shadow-sm">
+                        <option value="Car">Car</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Truck">Truck</option>
+                        <option value="Big Vehicle">Big Vehicle (RV, Commercial Van)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="serviceCategory" class="block text-sm form-label mb-1">2. Select Service Category</label>
+                    <select id="serviceCategory" name="serviceCategory" class="custom-select mt-1 block w-full pl-3 pr-10 py-2 text-base sm:text-sm rounded-md shadow-sm">
+                        <option value="">-- Choose a Category --</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="specificService" class="block text-sm form-label mb-1">3. Select Specific Service</label>
+                    <select id="specificService" name="specificService" class="custom-select mt-1 block w-full pl-3 pr-10 py-2 text-base sm:text-sm rounded-md shadow-sm">
+                        <option value="">-- Choose a Service --</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Quote Result Section -->
+            <div id="quoteResult" class="quote-result mt-8 text-center"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="media">
+            <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" loading="lazy"><img src="images/fa.png" alt="facebook"></a>
+            <a id="instagram" href="https://www.instagram.com/"><img src="images/insta.webp" alt="instagram" loading="lazy"></a>
+            <a id="x" href="https://x.com/?lang=en"><img src="images/x.webp" alt="x" loading="lazy"></a>
+        </div>
+        <div class="foot">
+            <p id="year">&copy; <span id="copy+year"></span>Swamp Donkey</p>
+            <p>📞 +1 208-547-8375</p>
+            <p id="mail"><span>📧</span><span>swampdonkeymobilemechanics@gmail.com</span></p>
+            <p>🗺️ 235 S 4th W Rexburg, ID 83440</p>
+            <p id="lastModified"></p>
+        </div>
+    </footer>
 
     <script>
         // --- DATA FROM THE PDF ---
-        const quoteData = {
-            "Common Maintenance": {
-                "Oil Change": { "Car": 75, "SUV": 95, "Truck": 110, "Big Vehicle": 150, "description": "Replacing engine oil and filter." },
-                "Tire Rotation": { "Car": 40, "SUV": 50, "Truck": 60, "Big Vehicle": 80, "description": "Rotating tires to ensure even wear." },
-                "Fluid Checks and Top-Offs": { "Car": 30, "SUV": 35, "Truck": 40, "Big Vehicle": 55, "description": "Checking and replenishing various fluids (coolant, brake fluid, etc.)." },
-                "Belt and Hose Inspection/Replacement": { "Car": 120, "SUV": 150, "Truck": 180, "Big Vehicle": 250, "description": "Checking for wear and tear, and replacing as needed (price for basic belt replacement)." },
-                "Filter Replacement (Air, Cabin, Fuel)": { "Car": 60, "SUV": 70, "Truck": 80, "Big Vehicle": 100, "description": "Replacing air filters, cabin air filters, and fuel filters (price per filter, average)." },
-                "Battery Testing and Replacement": { "Car": 150, "SUV": 170, "Truck": 190, "Big Vehicle": 220, "description": "Testing battery health and replacing it if necessary (price includes basic battery install)." },
-                "Pre-Purchase Inspection": { "Car": 150, "SUV": 175, "Truck": 200, "Big Vehicle": 250, "description": "Thoroughly inspecting a used vehicle before a customer buys it." },
-                "Seasonal Inspection": { "Car": 80, "SUV": 90, "Truck": 100, "Big Vehicle": 130, "description": "Checking a vehicle for readiness for specific seasons (e.g., winterizing checks)." }
-            },
-            "Repairs and Diagnostics": {
-                "Brake Services (Pads & Rotors, per axle)": { "Car": 300, "SUV": 350, "Truck": 400, "Big Vehicle": 500, "description": "Inspecting brakes, replacing brake pads and rotors (per axle)." },
-                "Diagnostic Scans": { "Car": 90, "SUV": 90, "Truck": 90, "Big Vehicle": 100, "description": "Using diagnostic tools to read trouble codes and pinpoint issues." },
-                "Minor Engine Repairs (Starting price)": { "Car": 200, "SUV": 250, "Truck": 300, "Big Vehicle": 400, "description": "Addressing issues like misfires, sensor replacements, spark plug replacement." },
-                "Starting and Charging System Repairs (Starting price)": { "Car": 250, "SUV": 300, "Truck": 350, "Big Vehicle": 450, "description": "Diagnosing and repairing issues with alternators, starters, and wiring." },
-                "Cooling System Repairs (Starting price)": { "Car": 200, "SUV": 250, "Truck": 300, "Big Vehicle": 400, "description": "Diagnosing and repairing issues like radiator leaks, thermostat replacement." },
-                "Suspension and Steering Repairs (Starting price)": { "Car": 250, "SUV": 300, "Truck": 350, "Big Vehicle": 500, "description": "Replacing shock absorbers, struts, control arms, etc. (price per component)." },
-                "Exhaust System Repairs (Starting price)": { "Car": 180, "SUV": 220, "Truck": 260, "Big Vehicle": 350, "description": "Repairing or replacing mufflers, pipes (minor repair)." },
-                "Electrical System Repairs": { "Car": "100/hr", "SUV": "100/hr", "Truck": "100/hr", "Big Vehicle": "120/hr", "description": "Diagnosing and repairing issues with wiring, fuses, lights, windows (Per hour + parts)." },
-                "Fuel System Repairs (Starting price)": { "Car": 250, "SUV": 300, "Truck": 350, "Big Vehicle": 450, "description": "Replacing fuel pumps, fuel filters, and fuel injectors." }
-            },
-            "Emergency and Roadside Assistance": {
-                "Jump Starts": { "Car": 60, "SUV": 60, "Truck": 60, "Big Vehicle": 75, "description": "Providing battery boosts for dead batteries." },
-                "Flat Tire Repair/Replacement": { "Car": 70, "SUV": 80, "Truck": 90, "Big Vehicle": 110, "description": "Patching tires or installing spare tires." },
-                "Fuel Delivery": { "Car": 70, "SUV": 70, "Truck": 70, "Big Vehicle": 85, "description": "Bringing fuel to a stranded vehicle (plus cost of fuel)." },
-                "Lockout Services": { "Car": 75, "SUV": 75, "Truck": 75, "Big Vehicle": 90, "description": "Assisting with unlocking vehicles." },
-                "On-site Minor Repairs (Minimum charge)": { "Car": 100, "SUV": 120, "Truck": 140, "Big Vehicle": 180, "description": "Performing quick fixes to get a vehicle running after a breakdown." }
-            }
-        };
+        const quoteData = { "Common Maintenance": { "Oil Change": { "Car": 75, "SUV": 95, "Truck": 110, "Big Vehicle": 150, "description": "Replacing engine oil and filter." }, "Tire Rotation": { "Car": 40, "SUV": 50, "Truck": 60, "Big Vehicle": 80, "description": "Rotating tires to ensure even wear." }, "Fluid Checks and Top-Offs": { "Car": 30, "SUV": 35, "Truck": 40, "Big Vehicle": 55, "description": "Checking and replenishing various fluids (coolant, brake fluid, etc.)." }, "Belt and Hose Inspection/Replacement": { "Car": 120, "SUV": 150, "Truck": 180, "Big Vehicle": 250, "description": "Checking for wear and tear, and replacing as needed (price for basic belt replacement)." }, "Filter Replacement (Air, Cabin, Fuel)": { "Car": 60, "SUV": 70, "Truck": 80, "Big Vehicle": 100, "description": "Replacing air filters, cabin air filters, and fuel filters (price per filter, average)." }, "Battery Testing and Replacement": { "Car": 150, "SUV": 170, "Truck": 190, "Big Vehicle": 220, "description": "Testing battery health and replacing it if necessary (price includes basic battery install)." }, "Pre-Purchase Inspection": { "Car": 150, "SUV": 175, "Truck": 200, "Big Vehicle": 250, "description": "Thoroughly inspecting a used vehicle before a customer buys it." }, "Seasonal Inspection": { "Car": 80, "SUV": 90, "Truck": 100, "Big Vehicle": 130, "description": "Checking a vehicle for readiness for specific seasons (e.g., winterizing checks)." } }, "Repairs and Diagnostics": { "Brake Services (Pads & Rotors, per axle)": { "Car": 300, "SUV": 350, "Truck": 400, "Big Vehicle": 500, "description": "Inspecting brakes, replacing brake pads and rotors (per axle)." }, "Diagnostic Scans": { "Car": 90, "SUV": 90, "Truck": 90, "Big Vehicle": 100, "description": "Using diagnostic tools to read trouble codes and pinpoint issues." }, "Minor Engine Repairs (Starting price)": { "Car": 200, "SUV": 250, "Truck": 300, "Big Vehicle": 400, "description": "Addressing issues like misfires, sensor replacements, spark plug replacement." }, "Starting and Charging System Repairs (Starting price)": { "Car": 250, "SUV": 300, "Truck": 350, "Big Vehicle": 450, "description": "Diagnosing and repairing issues with alternators, starters, and wiring." }, "Cooling System Repairs (Starting price)": { "Car": 200, "SUV": 250, "Truck": 300, "Big Vehicle": 400, "description": "Diagnosing and repairing issues like radiator leaks, thermostat replacement." }, "Suspension and Steering Repairs (Starting price)": { "Car": 250, "SUV": 300, "Truck": 350, "Big Vehicle": 500, "description": "Replacing shock absorbers, struts, control arms, etc. (price per component)." }, "Exhaust System Repairs (Starting price)": { "Car": 180, "SUV": 220, "Truck": 260, "Big Vehicle": 350, "description": "Repairing or replacing mufflers, pipes (minor repair)." }, "Electrical System Repairs": { "Car": "100/hr", "SUV": "100/hr", "Truck": "100/hr", "Big Vehicle": "120/hr", "description": "Diagnosing and repairing issues with wiring, fuses, lights, windows (Per hour + parts)." }, "Fuel System Repairs (Starting price)": { "Car": 250, "SUV": 300, "Truck": 350, "Big Vehicle": 450, "description": "Replacing fuel pumps, fuel filters, and fuel injectors." } }, "Emergency and Roadside Assistance": { "Jump Starts": { "Car": 60, "SUV": 60, "Truck": 60, "Big Vehicle": 75, "description": "Providing battery boosts for dead batteries." }, "Flat Tire Repair/Replacement": { "Car": 70, "SUV": 80, "Truck": 90, "Big Vehicle": 110, "description": "Patching tires or installing spare tires." }, "Fuel Delivery": { "Car": 70, "SUV": 70, "Truck": 70, "Big Vehicle": 85, "description": "Bringing fuel to a stranded vehicle (plus cost of fuel)." }, "Lockout Services": { "Car": 75, "SUV": 75, "Truck": 75, "Big Vehicle": 90, "description": "Assisting with unlocking vehicles." }, "On-site Minor Repairs (Minimum charge)": { "Car": 100, "SUV": 120, "Truck": 140, "Big Vehicle": 180, "description": "Performing quick fixes to get a vehicle running after a breakdown." } } };
+        
+        // --- GLOBAL STATE ---
+        let userVIN = ''; // To store the validated VIN
 
         // --- DOM ELEMENT REFERENCES ---
+        const vinEntryContainer = document.getElementById('vinEntryContainer');
+        const vinInput = document.getElementById('vinInput');
+        const vinSubmitButton = document.getElementById('vinSubmitButton');
+        const vinError = document.getElementById('vinError');
+        const serviceSelectorContainer = document.getElementById('serviceSelectorContainer');
+        
         const vehicleTypeSelect = document.getElementById('vehicleType');
         const serviceCategorySelect = document.getElementById('serviceCategory');
         const specificServiceSelect = document.getElementById('specificService');
         const quoteResultDiv = document.getElementById('quoteResult');
 
         // --- FUNCTIONS ---
+        function handleVinSubmit() {
+            const vin = vinInput.value.trim().toUpperCase();
+            if (vin.length >= 11 && vin.length <= 17) {
+                userVIN = vin; // Store the valid VIN
+                vinError.textContent = ''; // Clear error
+                vinEntryContainer.style.display = 'none'; // Hide VIN entry
+                serviceSelectorContainer.style.display = 'block'; // Show selectors
+            } else {
+                vinError.textContent = 'Invalid number of digits. Please enter a VIN between 11 and 17 characters.';
+            }
+        }
+
         function populateCategories() {
             const categories = Object.keys(quoteData);
             serviceCategorySelect.innerHTML = '<option value="">-- Choose a Category --</option>';
@@ -175,7 +217,6 @@
             const selectedCategory = serviceCategorySelect.value;
             specificServiceSelect.innerHTML = '<option value="">-- Choose a Service --</option>';
             quoteResultDiv.innerHTML = ''; 
-
             if (selectedCategory && quoteData[selectedCategory]) {
                 const services = Object.keys(quoteData[selectedCategory]);
                 services.forEach(service => {
@@ -201,19 +242,19 @@
                 let priceHTML;
                 if (typeof price === 'string' && price.includes('/hr')) {
                      priceString = `$${price} (plus parts)`;
-                     priceHTML = `<p class="text-4xl font-bold price-accent-text">$${price}</p>
-                                  <p class="text-gray-500 mt-1">(plus parts)</p>`;
+                     priceHTML = `<p class="text-4xl font-bold price-accent-text">$${price}</p><p class="text-gray-500 mt-1">(plus parts)</p>`;
                 } else {
                      priceString = `$${price}`;
                      priceHTML = `<p class="text-5xl font-bold price-accent-text">$${price}</p>`;
                 }
 
-                // --- Mailto link generation ---
+                // --- Mailto link generation (now includes VIN) ---
                 const email = "swampdonkeymobilemechanics@gmail.com";
-                const subject = `Service Request: ${service} for a ${vehicle}`;
+                const subject = `Service Request: ${service} for VIN ${userVIN}`;
                 const body = `Hello,
 I would like to schedule the following service:
 
+VIN: ${userVIN}
 Service: ${service}
 Vehicle Type: ${vehicle}
 Estimated Quote: ${priceString}
@@ -224,25 +265,19 @@ Thank you,
 [Your Name]`;
                 const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-
                 quoteResultDiv.innerHTML = `
                     <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 scale-0 origin-bottom animate-scale-in">
                         <h3 class="text-lg font-semibold main-heading">Estimated Quote</h3>
-                        <div class="my-4">
-                            ${priceHTML}
-                        </div>
+                        <div class="my-4">${priceHTML}</div>
                         <p class="text-gray-600 max-w-md mx-auto">${description}</p>
                         <div class="mt-6">
-                            <a href="${mailtoLink}" class="order-button">Order Now</a>
+                            <a href="${mailtoLink}" class="action-button">Order Now</a>
                         </div>
-                        <p class="text-xs text-gray-400 mt-4">*This is an estimate. Prices may vary based on specific vehicle make/model and parts required.</p>
-                    </div>
-                `;
+                        <p class="text-xs text-gray-400 mt-4">*This is an estimate. Prices may vary.</p>
+                    </div>`;
                 setTimeout(() => {
                     const resultCard = quoteResultDiv.querySelector('div');
-                    if(resultCard) {
-                        resultCard.style.transform = 'scale(1)';
-                    }
+                    if(resultCard) { resultCard.style.transform = 'scale(1)'; }
                 }, 10);
             } else {
                 quoteResultDiv.innerHTML = '';
@@ -251,17 +286,20 @@ Thank you,
         
         // --- INITIALIZATION & EVENT LISTENERS ---
         const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes scale-in {
-                from { transform: scale(0.8); opacity: 0; }
-                to { transform: scale(1); opacity: 1; }
-            }
-            .animate-scale-in {
-                animation: scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-            }
-        `;
+        style.innerHTML = `@keyframes scale-in { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } } .animate-scale-in { animation: scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }`;
         document.head.appendChild(style);
+        
         document.addEventListener('DOMContentLoaded', populateCategories);
+
+        // VIN submission listeners
+        vinSubmitButton.addEventListener('click', handleVinSubmit);
+        vinInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleVinSubmit();
+            }
+        });
+        
+        // Service selection listeners
         serviceCategorySelect.addEventListener('change', populateServices);
         vehicleTypeSelect.addEventListener('change', displayQuote);
         specificServiceSelect.addEventListener('change', displayQuote);
