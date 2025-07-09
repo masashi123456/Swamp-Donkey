@@ -104,7 +104,7 @@
         <a href="index.html">Home</a>
         <a href="quote.html">Quick Quote</a>
         <a href="index.html#about">About</a>
-        <a href="index.html#services">Services</a>
+        <a href="services.html">Services</a>
         <a href="contact.html">Contact</a>
     </div>
 
@@ -115,39 +115,31 @@
             <input type="text" id="name" name="name" required />
 
             <label for="email">Your E-mail Address</label>
-            <input type="email" id="email" name="mail-address" required />
+            <input type="email" id="email" name="email" required />
 
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="6" required></textarea>
+            <textarea id="message" name="message" rows="10" required></textarea>
 
             <button type="submit">Send Message</button>
         </form>
     </div>
 
     <footer>
-        <div class="media">
-            <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" loading="lazy">
-                <img src="images/fa.png" alt="facebook">
-            </a>
-            <a id="instagram" href="https://www.instagram.com/">
-                <img src="images/insta.webp" alt="instagram" loading="lazy">
-            </a>
-            <a id="x" href="https://x.com/?lang=en">
-                <img src="images/x.webp" alt="x" loading="lazy">
-            </a>
-        </div>
+        </footer>
 
-        <div class="foot">
-            <p id="year">&copy; <span id="copy+year"></span>Swamp Donkey</p>
-            <p>📞 +1 208-547-8375</p>
-            <p id="mail">
-                <span>📧</span>
-                <span>swampdonkeymobilemechanics@gmail.com</span>
-            </p>
-            <p>🗺️ 235 S 4th W Rexburg, ID 83440</p>
-            <p id="lastModified"></p>
-        </div>
-    </footer>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create a new URLSearchParams object from the current URL
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Get the 'message' parameter from the URL
+            const messageFromQuote = urlParams.get('message');
+            
+            // If the message parameter exists, put its value in the textarea
+            if (messageFromQuote) {
+                document.getElementById('message').value = messageFromQuote;
+            }
+        });
+    </script>
 </body>
 </html>
