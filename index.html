@@ -1,20 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <meta name="author" content="David Lunceford, Masashi Ota"> 
-    <meta name="description" content="Home page for Swamp Donkey"> 
-    <meta property="og:title" content="Swamp Donkey"> 
-    <meta property="og:type" content="Web Page"> 
-    <meta property="og:image" content="#"> 
-    <meta property="og:url" content="https://github.com/masashi123456/Swamp-Donkey.git"> 
-    <title>SWAMP DONKEY</title> 
-    <link rel="icon" href="images/favicon.ico"> 
-    <link rel = "stylesheet" href = "styles/base.css">  
-    <link rel = "stylesheet" href = "styles/styles.css">  
-    <link rel = "stylesheet" href = "styles/large.css">  
-    <link rel="stylesheet" href="styles/normalize.css"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="David Lunceford, Masashi Ota">
+    <meta name="description" content="Home page for Swamp Donkey">
+    <meta property="og:title" content="Swamp Donkey">
+    <meta property="og:type" content="Web Page">
+    <meta property="og:image" content="#">
+    <meta property="og:url" content="https://github.com/masashi123456/Swamp-Donkey.git">
+    <title>SWAMP DONKEY</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel = "stylesheet" href = "styles/base.css">
+    <link rel = "stylesheet" href = "styles/styles.css">
+    <link rel = "stylesheet" href = "styles/large.css">
+    <link rel="stylesheet" href="styles/normalize.css">
+    
+    <style>
+        /* ADDED: Style for the navigation bar container */
+        .navbar {
+            background-color: #fdf2de; /* White background for the bar */
+            padding: 15px 10px;      /* Add some space around the buttons */
+            text-align: center;      /* Center the buttons within the bar */
+        }
+
+        /* Style for the navigation bar buttons */
+        .navbar a {
+            /* This makes the transition smooth */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 5px;
+            background-color: #f08c00; /* CHANGED: A nice shade of orange */
+            color: #ffffff;            /* CHANGED: White text for better contrast */
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold; /* Make the text a bit bolder */
+        }
+
+        /* This is what happens when you hover over the button */
+        .navbar a:hover {
+            /* This makes the button slightly larger and moves it up */
+            transform: scale(1.05) translateY(-5px);
+            /* This adds a shadow to give it a "lifted" feel */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+    </style>
 </head>
 <header>
     <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
