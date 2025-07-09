@@ -4,70 +4,150 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta name="author" content="David Lunceford, Masashi Ota"> 
-    <meta name="description" content="Home page for Swamp Donkey"> 
+    <meta name="description" content="Contact Swamp Donkey Mobile Mechanics"> 
     <meta property="og:title" content="Swamp Donkey"> 
     <meta property="og:type" content="Web Page"> 
     <meta property="og:image" content="#"> 
     <meta property="og:url" content="https://github.com/masashi123456/Swamp-Donkey.git"> 
-    <title>SWAMP DONKEY</title> 
+    <title>Contact - SWAMP DONKEY</title> 
     <link rel="icon" href="images/favicon.ico"> 
-    <link rel = "stylesheet" href = "styles/base.css">  
-    <link rel = "stylesheet" href = "styles/styles.css">  
-    <link rel = "stylesheet" href = "styles/large.css">  
+    <link rel="stylesheet" href="styles/base.css">  
+    <link rel="stylesheet" href="styles/styles.css">  
+    <link rel="stylesheet" href="styles/large.css">  
     <link rel="stylesheet" href="styles/normalize.css"> 
+
+    <style>
+        /* --- ADDED: Navigation Bar and Form Styles for Consistency --- */
+        body {
+            background-color: #f4f4f4; /* Light gray background */
+            font-family: sans-serif;
+        }
+        .navbar {
+            background-color: #fdf2de;
+            padding: 15px 10px;
+            text-align: center;
+        }
+        .navbar a {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 5px;
+            background-color: #f08c00;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+        /* Styling for the contact form container */
+        .container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        .container h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        /* Form element styling */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus {
+            border-color: #f08c00;
+            outline: none;
+        }
+        button[type="submit"] {
+            padding: 12px 20px;
+            background-color: #f08c00;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+        button[type="submit"]:hover {
+            background-color: #cc6914; /* Darker orange */
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <header>
     <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
 </header>
 <body>
     <div class="navbar">
-    <a href="#home">Home</a>
-    <a href="quote.html" target="_blank">Quick Quote</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </div>
-<div class="container">
-    <h1>Swamp Donkey Contact Form</h1>
-    <form action="mailto:contact@swampdonkey.com" method="POST" enctype="text/plain">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" required />
-
-      <label for="email">Your E-mail address</label>
-      <input type="email" id="email" name="mail-address" required />
-
-      <label for="message">Contents</label>
-      <textarea id="message" name="contents" required></textarea>
-
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-<footer>
-    <div class="media">
-        <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" loading="lazy">
-            <img src="images/fa.png" alt="facebook">
-        </a>
-        <a id="instagram" href="https://www.instagram.com/">
-            <img src="images/insta.webp" alt="facebook" loading="lazy">
-        </a>
-        <a id="x" href="https://x.com/?lang=en">
-            <img src="images/x.webp" alt="x" loading="lazy">
-        </a>
+        <a href="index.html">Home</a>
+        <a href="quote.html">Quick Quote</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="contact.html">Contact</a>
     </div>
 
-    <div class="foot">
-        <p id="year">&copy; <span id="copy+year"></span>Swamp Donkey</p>
-        <p>📞 +1 208-547-8375</p>
-        <p id="mail">
-            <span>📧</span>
+    <div class="container">
+        <h1>Contact Swamp Donkey</h1>
+        <form action="mailto:swampdonkeymobilemechanics@gmail.com" method="POST" enctype="text/plain">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required />
 
-            <span>swampdonkeymobilemechanics@gmail.com</span>
+            <label for="email">Your E-mail Address</label>
+            <input type="email" id="email" name="mail-address" required />
 
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="media">
+            <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" loading="lazy">
+                <img src="images/fa.png" alt="facebook">
+            </a>
+            <a id="instagram" href="https://www.instagram.com/">
+                <img src="images/insta.webp" alt="instagram" loading="lazy">
+            </a>
+            <a id="x" href="https://x.com/?lang=en">
+                <img src="images/x.webp" alt="x" loading="lazy">
+            </a>
+        </div>
+
+        <div class="foot">
+            <p id="year">&copy; <span id="copy+year"></span>Swamp Donkey</p>
+            <p>📞 +1 208-547-8375</p>
+            <p id="mail">
+                <span>📧</span>
+                <span>swampdonkeymobilemechanics@gmail.com</span>
             </p>
-        <p>🗺️ 235 S 4th W Rexburg, ID 83440</p>
-        <p id="lastModified"></p>
-    </div>
-</footer>
+            <p>🗺️ 235 S 4th W Rexburg, ID 83440</p>
+            <p id="lastModified"></p>
+        </div>
+    </footer>
 
 </body>
 </html>

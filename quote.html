@@ -5,21 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instant Quote Generator - Swamp Donkey</title>
     
-    <!-- Stylesheets from main page for consistency -->
     <link rel="icon" href="images/favicon.ico"> 
     <link rel="stylesheet" href="styles/base.css">  
     <link rel="stylesheet" href="styles/styles.css">  
     <link rel="stylesheet" href="styles/large.css">  
     <link rel="stylesheet" href="styles/normalize.css">
 
-    <!-- Tailwind CSS for styling the quote card -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* --- ADDED: Navigation Bar Styles for Consistency --- */
+        .navbar {
+            background-color: #fdf2de;
+            padding: 15px 10px;
+            text-align: center;
+        }
+        .navbar a {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 5px;
+            background-color: #f08c00;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+
         /* --- Custom Color Palette --- */
         :root {
             --bg-beige: #fcf4e2;
@@ -32,18 +51,16 @@
         /* Applying the custom colors */
         body {
             font-family: 'Inter', sans-serif;
-            /* The background color will be controlled by your external CSS now */
-            /* Added animation for page load */
             animation: fadeInAnimation 0.5s ease-in-out forwards;
         }
         .quote-container {
             background-color: var(--bg-beige);
-            padding: 2rem 1rem; /* Add some padding for smaller screens */
+            padding: 2rem 1rem;
         }
         .quote-card {
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease-in-out;
-            margin: 0 auto; /* Center the card */
+            margin: 0 auto;
         }
         .quote-result {
             transition: all 0.5s ease-in-out;
@@ -58,7 +75,7 @@
             font-weight: 500;
         }
         .custom-input, .custom-select {
-            border-color: #d1d5db; /* Default gray border */
+            border-color: #d1d5db;
         }
         .custom-input:focus, .custom-select:focus {
             outline: 2px solid transparent;
@@ -88,22 +105,20 @@
             transform: translateY(-2px);
         }
         .vin-error-message {
-            color: #ef4444; /* Red color for error */
+            color: #ef4444;
             font-size: 0.875rem;
             margin-top: 0.5rem;
-            height: 1.25rem; /* Reserve space to prevent layout shift */
+            height: 1.25rem;
         }
 
         /* --- Page Transition Styles --- */
         body.fade-out {
             animation: fadeOutAnimation 0.5s ease-in-out forwards;
         }
-
         @keyframes fadeInAnimation {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         @keyframes fadeOutAnimation {
             from { opacity: 1; }
             to { opacity: 0; }
@@ -118,10 +133,10 @@
 
     <div class="navbar">
         <a href="index.html">Home</a>
-        <a href="quote.html" target="_blank">Quick Quote</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="Contact.html">Contact</a>
+        <a href="quote.html">Quick Quote</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="contact.html">Contact</a>
     </div>
 
     <main class="quote-container">
@@ -132,7 +147,6 @@
                 <p class="text-gray-500 mt-2">Start by entering your vehicle's VIN below.</p>
             </div>
 
-            <!-- VIN Entry Section -->
             <div id="vinEntryContainer">
                 <label for="vinInput" class="block text-sm form-label mb-1">Vehicle VIN</label>
                 <div class="flex flex-col sm:flex-row gap-2">
@@ -142,7 +156,6 @@
                 <p id="vinError" class="vin-error-message text-center sm:text-left"></p>
             </div>
 
-            <!-- Service Selection Section (Initially Hidden) -->
             <div id="serviceSelectorContainer" class="space-y-6" style="display: none;">
                 <div>
                     <label for="vehicleType" class="block text-sm form-label mb-1">1. Select Vehicle Type</label>
@@ -167,7 +180,6 @@
                 </div>
             </div>
 
-            <!-- Quote Result Section -->
             <div id="quoteResult" class="quote-result mt-8 text-center"></div>
         </div>
     </main>
@@ -188,157 +200,28 @@
     </footer>
 
     <script>
-        // --- DATA FROM THE PDF ---
+        // Your existing Javascript remains here...
         const quoteData = { "Common Maintenance": { "Oil Change": { "Car": 75, "SUV": 95, "Truck": 110, "Big Vehicle": 150, "description": "Replacing engine oil and filter." }, "Tire Rotation": { "Car": 40, "SUV": 50, "Truck": 60, "Big Vehicle": 80, "description": "Rotating tires to ensure even wear." }, "Fluid Checks and Top-Offs": { "Car": 30, "SUV": 35, "Truck": 40, "Big Vehicle": 55, "description": "Checking and replenishing various fluids (coolant, brake fluid, etc.)." }, "Belt and Hose Inspection/Replacement": { "Car": 120, "SUV": 150, "Truck": 180, "Big Vehicle": 250, "description": "Checking for wear and tear, and replacing as needed (price for basic belt replacement)." }, "Filter Replacement (Air, Cabin, Fuel)": { "Car": 60, "SUV": 70, "Truck": 80, "Big Vehicle": 100, "description": "Replacing air filters, cabin air filters, and fuel filters (price per filter, average)." }, "Battery Testing and Replacement": { "Car": 150, "SUV": 170, "Truck": 190, "Big Vehicle": 220, "description": "Testing battery health and replacing it if necessary (price includes basic battery install)." }, "Pre-Purchase Inspection": { "Car": 150, "SUV": 175, "Truck": 200, "Big Vehicle": 250, "description": "Thoroughly inspecting a used vehicle before a customer buys it." }, "Seasonal Inspection": { "Car": 80, "SUV": 90, "Truck": 100, "Big Vehicle": 130, "description": "Checking a vehicle for readiness for specific seasons (e.g., winterizing checks)." } }, "Repairs and Diagnostics": { "Brake Services (Pads & Rotors, per axle)": { "Car": 300, "SUV": 350, "Truck": 400, "Big Vehicle": 500, "description": "Inspecting brakes, replacing brake pads and rotors (per axle)." }, "Diagnostic Scans": { "Car": 90, "SUV": 90, "Truck": 90, "Big Vehicle": 100, "description": "Using diagnostic tools to read trouble codes and pinpoint issues." }, "Minor Engine Repairs (Starting price)": { "Car": 200, "SUV": 250, "Truck": 300, "Big Vehicle": 400, "description": "Addressing issues like misfires, sensor replacements, spark plug replacement." }, "Starting and Charging System Repairs (Starting price)": { "Car": 250, "SUV": 300, "Truck": 350, "Big Vehicle": 450, "description": "Diagnosing and repairing issues with alternators, starters, and wiring." }, "Cooling System Repairs (Starting price)": { "Car": 200, "SUV": 250, "Truck": 300, "Big Vehicle": 400, "description": "Diagnosing and repairing issues like radiator leaks, thermostat replacement." }, "Suspension and Steering Repairs (Starting price)": { "Car": 250, "SUV": 300, "Truck": 350, "Big Vehicle": 500, "description": "Replacing shock absorbers, struts, control arms, etc. (price per component)." }, "Exhaust System Repairs (Starting price)": { "Car": 180, "SUV": 220, "Truck": 260, "Big Vehicle": 350, "description": "Repairing or replacing mufflers, pipes (minor repair)." }, "Electrical System Repairs": { "Car": "100/hr", "SUV": "100/hr", "Truck": "100/hr", "Big Vehicle": "120/hr", "description": "Diagnosing and repairing issues with wiring, fuses, lights, windows (Per hour + parts)." }, "Fuel System Repairs (Starting price)": { "Car": 250, "SUV": 300, "Truck": 350, "Big Vehicle": 450, "description": "Replacing fuel pumps, fuel filters, and fuel injectors." } }, "Emergency and Roadside Assistance": { "Jump Starts": { "Car": 60, "SUV": 60, "Truck": 60, "Big Vehicle": 75, "description": "Providing battery boosts for dead batteries." }, "Flat Tire Repair/Replacement": { "Car": 70, "SUV": 80, "Truck": 90, "Big Vehicle": 110, "description": "Patching tires or installing spare tires." }, "Fuel Delivery": { "Car": 70, "SUV": 70, "Truck": 70, "Big Vehicle": 85, "description": "Bringing fuel to a stranded vehicle (plus cost of fuel)." }, "Lockout Services": { "Car": 75, "SUV": 75, "Truck": 75, "Big Vehicle": 90, "description": "Assisting with unlocking vehicles." }, "On-site Minor Repairs (Minimum charge)": { "Car": 100, "SUV": 120, "Truck": 140, "Big Vehicle": 180, "description": "Performing quick fixes to get a vehicle running after a breakdown." } } };
-        
-        // --- GLOBAL STATE ---
-        let userVIN = ''; // To store the validated VIN
-
-        // --- DOM ELEMENT REFERENCES ---
+        let userVIN = '';
         const vinEntryContainer = document.getElementById('vinEntryContainer');
         const vinInput = document.getElementById('vinInput');
         const vinSubmitButton = document.getElementById('vinSubmitButton');
         const vinError = document.getElementById('vinError');
         const serviceSelectorContainer = document.getElementById('serviceSelectorContainer');
-        
         const vehicleTypeSelect = document.getElementById('vehicleType');
         const serviceCategorySelect = document.getElementById('serviceCategory');
         const specificServiceSelect = document.getElementById('specificService');
         const quoteResultDiv = document.getElementById('quoteResult');
-
-        // --- FUNCTIONS ---
-        function handleVinSubmit() {
-            const vin = vinInput.value.trim().toUpperCase();
-            if (vin.length >= 11 && vin.length <= 17) {
-                userVIN = vin; // Store the valid VIN
-                vinError.textContent = ''; // Clear error
-                vinEntryContainer.style.display = 'none'; // Hide VIN entry
-                serviceSelectorContainer.style.display = 'block'; // Show selectors
-            } else {
-                vinError.textContent = 'Invalid number of digits. Please enter a VIN between 11 and 17 characters.';
-            }
-        }
-
-        function populateCategories() {
-            const categories = Object.keys(quoteData);
-            serviceCategorySelect.innerHTML = '<option value="">-- Choose a Category --</option>';
-            categories.forEach(category => {
-                const option = document.createElement('option');
-                option.value = category;
-                option.textContent = category;
-                serviceCategorySelect.appendChild(option);
-            });
-        }
-
-        function populateServices() {
-            const selectedCategory = serviceCategorySelect.value;
-            specificServiceSelect.innerHTML = '<option value="">-- Choose a Service --</option>';
-            quoteResultDiv.innerHTML = ''; 
-            if (selectedCategory && quoteData[selectedCategory]) {
-                const services = Object.keys(quoteData[selectedCategory]);
-                services.forEach(service => {
-                    const option = document.createElement('option');
-                    option.value = service;
-                    option.textContent = service;
-                    specificServiceSelect.appendChild(option);
-                });
-            }
-        }
-
-        function displayQuote() {
-            const vehicle = vehicleTypeSelect.value;
-            const category = serviceCategorySelect.value;
-            const service = specificServiceSelect.value;
-
-            if (vehicle && category && service) {
-                const serviceData = quoteData[category][service];
-                const price = serviceData[vehicle];
-                const description = serviceData.description;
-
-                let priceString;
-                let priceHTML;
-                if (typeof price === 'string' && price.includes('/hr')) {
-                     priceString = `$${price} (plus parts)`;
-                     priceHTML = `<p class="text-4xl font-bold price-accent-text">$${price}</p><p class="text-gray-500 mt-1">(plus parts)</p>`;
-                } else {
-                     priceString = `$${price}`;
-                     priceHTML = `<p class="text-5xl font-bold price-accent-text">$${price}</p>`;
-                }
-
-                // --- Mailto link generation (now includes VIN) ---
-                const email = "swampdonkeymobilemechanics@gmail.com";
-                const subject = `Service Request: ${service} for VIN ${userVIN}`;
-                const body = `Hello,
-I would like to schedule the following service:
-
-VIN: ${userVIN}
-Service: ${service}
-Vehicle Type: ${vehicle}
-Estimated Quote: ${priceString}
-
-Please let me know your availability.
-
-Thank you,
-[Your Name]`;
-                const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-                quoteResultDiv.innerHTML = `
-                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 scale-0 origin-bottom animate-scale-in">
-                        <h3 class="text-lg font-semibold main-heading">Estimated Quote</h3>
-                        <div class="my-4">${priceHTML}</div>
-                        <p class="text-gray-600 max-w-md mx-auto">${description}</p>
-                        <div class="mt-6">
-                            <a href="${mailtoLink}" class="action-button">Order Now</a>
-                        </div>
-                        <p class="text-xs text-gray-400 mt-4">*This is an estimate. Prices may vary.</p>
-                    </div>`;
-                setTimeout(() => {
-                    const resultCard = quoteResultDiv.querySelector('div');
-                    if(resultCard) { resultCard.style.transform = 'scale(1)'; }
-                }, 10);
-            } else {
-                quoteResultDiv.innerHTML = '';
-            }
-        }
-        
-        // --- INITIALIZATION & EVENT LISTENERS ---
+        function handleVinSubmit() { const vin = vinInput.value.trim().toUpperCase(); if (vin.length >= 11 && vin.length <= 17) { userVIN = vin; vinError.textContent = ''; vinEntryContainer.style.display = 'none'; serviceSelectorContainer.style.display = 'block'; } else { vinError.textContent = 'Invalid number of digits. Please enter a VIN between 11 and 17 characters.'; } }
+        function populateCategories() { const categories = Object.keys(quoteData); serviceCategorySelect.innerHTML = '<option value="">-- Choose a Category --</option>'; categories.forEach(category => { const option = document.createElement('option'); option.value = category; option.textContent = category; serviceCategorySelect.appendChild(option); }); }
+        function populateServices() { const selectedCategory = serviceCategorySelect.value; specificServiceSelect.innerHTML = '<option value="">-- Choose a Service --</option>'; quoteResultDiv.innerHTML = ''; if (selectedCategory && quoteData[selectedCategory]) { const services = Object.keys(quoteData[selectedCategory]); services.forEach(service => { const option = document.createElement('option'); option.value = service; option.textContent = service; specificServiceSelect.appendChild(option); }); } }
+        function displayQuote() { const vehicle = vehicleTypeSelect.value; const category = serviceCategorySelect.value; const service = specificServiceSelect.value; if (vehicle && category && service) { const serviceData = quoteData[category][service]; const price = serviceData[vehicle]; const description = serviceData.description; let priceString; let priceHTML; if (typeof price === 'string' && price.includes('/hr')) { priceString = `$${price} (plus parts)`; priceHTML = `<p class="text-4xl font-bold price-accent-text">$${price}</p><p class="text-gray-500 mt-1">(plus parts)</p>`; } else { priceString = `$${price}`; priceHTML = `<p class="text-5xl font-bold price-accent-text">$${price}</p>`; } const email = "swampdonkeymobilemechanics@gmail.com"; const subject = `Service Request: ${service} for VIN ${userVIN}`; const body = `Hello,\nI would like to schedule the following service:\n\nVIN: ${userVIN}\nService: ${service}\nVehicle Type: ${vehicle}\nEstimated Quote: ${priceString}\n\nPlease let me know your availability.\n\nThank you,\n[Your Name]`; const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; quoteResultDiv.innerHTML = ` <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 scale-0 origin-bottom animate-scale-in"> <h3 class="text-lg font-semibold main-heading">Estimated Quote</h3> <div class="my-4">${priceHTML}</div> <p class="text-gray-600 max-w-md mx-auto">${description}</p> <div class="mt-6"> <a href="${mailtoLink}" class="action-button">Order Now</a> </div> <p class="text-xs text-gray-400 mt-4">*This is an estimate. Prices may vary.</p> </div>`; setTimeout(() => { const resultCard = quoteResultDiv.querySelector('div'); if(resultCard) { resultCard.style.transform = 'scale(1)'; } }, 10); } else { quoteResultDiv.innerHTML = ''; } }
         const style = document.createElement('style');
         style.innerHTML = `@keyframes scale-in { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } } .animate-scale-in { animation: scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }`;
         document.head.appendChild(style);
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            populateCategories();
-
-            // --- Page Transition Logic ---
-            document.querySelectorAll('.navbar a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    
-                    // Ignore links that open in a new tab or are just anchor links
-                    if (this.target === '_blank' || href.startsWith('#')) {
-                        return;
-                    }
-                    
-                    e.preventDefault(); // Stop the link from navigating immediately
-                    document.body.classList.add('fade-out'); // Add fade-out class
-                    
-                    // Wait for the animation to finish before changing the page
-                    setTimeout(() => {
-                        window.location.href = href;
-                    }, 500); // This duration should match the animation duration in CSS
-                });
-            });
-        });
-
-        // VIN submission listeners
+        document.addEventListener('DOMContentLoaded', () => { populateCategories(); document.querySelectorAll('.navbar a').forEach(link => { link.addEventListener('click', function(e) { const href = this.getAttribute('href'); if (this.target === '_blank' || href.startsWith('#')) { return; } e.preventDefault(); document.body.classList.add('fade-out'); setTimeout(() => { window.location.href = href; }, 500); }); }); });
         vinSubmitButton.addEventListener('click', handleVinSubmit);
-        vinInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                handleVinSubmit();
-            }
-        });
-        
-        // Service selection listeners
+        vinInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') { handleVinSubmit(); } });
         serviceCategorySelect.addEventListener('change', populateServices);
         vehicleTypeSelect.addEventListener('change', displayQuote);
         specificServiceSelect.addEventListener('change', displayQuote);
