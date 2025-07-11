@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="David Lunceford, Masashi Ota, Ryan Griffin">
+    <meta name="description" content="Customer reviews for Swamp Donkey Mobile Mechanic in Rexburg, ID.">
+    <meta property="og:title" content="Swamp Donkey Reviews">
+    <meta property="og:type" content="Web Page">
+    <meta property="og:image" content="#">
+    <meta property="og:url" content="https://github.com/masashi123456/Swamp-Donkey.git">
+    <title>Reviews - SWAMP DONKEY</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/large.css">
+    <link rel="stylesheet" href="styles/normalize.css">
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for star icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Base and Nav Styles (from existing site) --- */
+        body {
+            background-color: #f4f4f4;
+            font-family: sans-serif;
+        }
+        .navbar {
+            background-color: #fdf2de;
+            padding: 15px 10px;
+            text-align: center;
+        }
+        .navbar a {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 5px;
+            background-color: #f08c00;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        /* --- Review Page Specific Styles --- */
+        .review-form-card, .review-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            gap: 0.25rem;
+        }
+        .star-rating input[type="radio"] {
+            display: none;
+        }
+        .star-rating label {
+            font-size: 2rem;
+            color: #d1d5db; /* gray-300 */
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .star-rating input[type="radio"]:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #f59e0b; /* amber-500 */
+        }
+        
+        .submit-button {
+            background-color: #f08c00;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .submit-button:hover {
+            background-color: #cc6914;
+            transform: translateY(-2px);
+        }
+        
+        /* Styles for the confirmation message */
+        #confirmation-message {
+            transition: opacity 0.5s, transform 0.5s;
+        }
+    </style>
+</head>
+<header>
+    <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
+</header>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="quote.html">Quick Quote</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="review.html">Reviews</a>
+    </div>
+
+    <main class="py-12 px-4">
+        <div class="max-w-4xl mx-auto space-y-12">
+            <!-- Leave a Review Form -->
+            <div class="review-form-card p-8">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Leave Us a Review</h2>
+                <form id="reviewForm" class="space-y-6">
+                    <div>
+                        <label for="reviewerName" class="block text-sm font-medium text-gray-700">Your Name</label>
+                        <input type="text" id="reviewerName" name="reviewerName" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 text-center mb-2">Your Rating</label>
+                        <div id="starRating" class="star-rating">
+                            <input type="radio" id="star5" name="rating" value="5" required/><label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star4" name="rating" value="4"/><label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star3" name="rating" value="3"/><label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star2" name="rating" value="2"/><label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star1" name="rating" value="1"/><label for="star1" title="1 star"><i class="fas fa-star"></i></label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="reviewMessage" class="block text-sm font-medium text-gray-700">Review</label>
+                        <textarea id="reviewMessage" name="reviewMessage" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="submit-button text-white font-bold py-3 px-8 rounded-lg shadow-lg">Submit Review</button>
+                    </div>
+                </form>
+                <div id="confirmation-message" class="mt-6 text-center text-green-600 font-semibold opacity-0 transform translate-y-2">
+                    <p>Thank you! Your review has been submitted.</p>
+                </div>
+            </div>
+
+            <!-- Display Reviews -->
+            <div class="space-y-8">
+                <h2 class="text-3xl font-bold text-center text-gray-800">What Our Customers Are Saying</h2>
+                
+                <!-- Container for User-Submitted Reviews -->
+                <div id="reviewsContainer" class="space-y-6">
+                    <!-- Reviews will be loaded here by JavaScript -->
+                </div>
+
+                <!-- Google Reviews Placeholder -->
+                <div class="google-reviews-section">
+                     <h3 class="text-2xl font-bold text-center text-gray-700 mb-6 flex items-center justify-center gap-3">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="h-6 w-6">
+                        Google Reviews
+                    </h3>
+                    <div class="space-y-6">
+                        <!-- Example Google Review Card -->
+                        <div class="review-card p-6">
+                            <div class="flex items-center mb-2">
+                                <p class="font-bold text-gray-800">Jane Doe</p>
+                                <div class="ml-auto flex items-center">
+                                    <span class="text-amber-500"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                </div>
+                            </div>
+                            <p class="text-gray-600">"Incredible service! They came right to my workplace and fixed my car's issue in under an hour. Super convenient and professional. Highly recommend!"</p>
+                        </div>
+                         <!-- Example Google Review Card -->
+                        <div class="review-card p-6">
+                            <div class="flex items-center mb-2">
+                                <p class="font-bold text-gray-800">John Smith</p>
+                                <div class="ml-auto flex items-center">
+                                    <span class="text-amber-500"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                </div>
+                            </div>
+                            <p class="text-gray-600">"Honest, fair pricing, and incredibly skilled. I was stranded and they were a lifesaver. You can't go wrong with Swamp Donkey."</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+                        <h4 class="font-bold text-blue-800">Note for the Business Owner:</h4>
+                        <p class="text-sm text-blue-700">To display live Google Reviews, you'll need to use the Google Places API. This requires an API Key and your business's Place ID from your Google Business Profile.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <!-- The footer from your other pages would go here -->
+        <div class="media">
+            <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" loading="lazy">
+                <img src="images/fa.png" alt="facebook">
+            </a>
+            <a id="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" loading="lazy">
+                <img src="images/insta.webp" alt="instagram">
+            </a>
+            <a id="x" href="https://x.com/?lang=en" target="_blank" rel="noopener noreferrer" loading="lazy">
+                <img src="images/x.webp" alt="x">
+            </a>
+        </div>
+        <div class="foot">
+            <p id="year">&copy; <span id="copy+year"></span>Swamp Donkey</p>
+            <p>📞 +1 208-547-8375</p>
+            <p id="mail">
+                <span>📧</span>
+                <span>swampdonkeymobilemechanics@gmail.com</span>
+            </p>
+            <p>🗺️ 235 S 4th W Rexburg, ID 83440</p>
+            <p id="lastModified"></p>
+        </div>
+    </footer>
+
+    <!-- Firebase -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- Firebase Configuration ---
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // --- Authentication ---
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is signed in:", user.uid);
+                loadReviews();
+            } else {
+                console.log("User is signed out. Signing in anonymously.");
+                signInAnonymously(auth).catch(error => console.error("Anonymous sign-in failed:", error));
+            }
+        });
+        
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+            signInWithCustomToken(auth, __initial_auth_token).catch(error => {
+                console.error("Custom token sign-in failed:", error);
+                signInAnonymously(auth); // Fallback to anonymous
+            });
+        } else {
+            signInAnonymously(auth);
+        }
+
+        // --- Firestore Logic ---
+        const reviewsCollectionRef = collection(db, `/artifacts/${appId}/public/data/reviews`);
+
+        // --- Handle Form Submission ---
+        const reviewForm = document.getElementById('reviewForm');
+        const confirmationMessage = document.getElementById('confirmation-message');
+
+        reviewForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = reviewForm.reviewerName.value;
+            const rating = reviewForm.rating.value;
+            const message = reviewForm.reviewMessage.value;
+            
+            if (!name || !rating || !message) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            try {
+                await addDoc(reviewsCollectionRef, {
+                    name: name,
+                    rating: parseInt(rating),
+                    message: message,
+                    createdAt: new Date()
+                });
+
+                reviewForm.reset();
+                // Show confirmation message
+                confirmationMessage.style.opacity = '1';
+                confirmationMessage.style.transform = 'translateY(0)';
+                setTimeout(() => {
+                    confirmationMessage.style.opacity = '0';
+                    confirmationMessage.style.transform = 'translateY(0.5rem)';
+                }, 4000);
+
+            } catch (error) {
+                console.error("Error adding document: ", error);
+                alert('There was an error submitting your review. Please try again.');
+            }
+        });
+
+        // --- Load and Display Reviews ---
+        const reviewsContainer = document.getElementById('reviewsContainer');
+
+        function loadReviews() {
+            // NOTE: orderBy requires a composite index in Firestore. For simplicity, we will sort on the client side.
+            const q = query(collection(db, `/artifacts/${appId}/public/data/reviews`));
+
+            onSnapshot(q, (snapshot) => {
+                let reviews = [];
+                snapshot.forEach((doc) => {
+                    reviews.push({ ...doc.data(), id: doc.id });
+                });
+
+                // Sort reviews by date, newest first
+                reviews.sort((a, b) => b.createdAt.toDate() - a.createdAt.toDate());
+
+                reviewsContainer.innerHTML = ''; // Clear existing reviews
+                if (reviews.length === 0) {
+                    reviewsContainer.innerHTML = '<p class="text-center text-gray-500">Be the first to leave a review!</p>';
+                } else {
+                    reviews.forEach(review => {
+                        const reviewEl = document.createElement('div');
+                        reviewEl.className = 'review-card p-6';
+                        
+                        let stars = '';
+                        for (let i = 0; i < 5; i++) {
+                            stars += `<i class="fas fa-star ${i < review.rating ? 'text-amber-500' : 'text-gray-300'}"></i>`;
+                        }
+
+                        reviewEl.innerHTML = `
+                            <div class="flex items-center mb-2">
+                                <p class="font-bold text-gray-800">${review.name}</p>
+                                <div class="ml-auto flex items-center">${stars}</div>
+                            </div>
+                            <p class="text-gray-600">${review.message}</p>
+                        `;
+                        reviewsContainer.appendChild(reviewEl);
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
