@@ -4,15 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Instant Quote Generator - Swamp Donkey</title>
-  <link rel="icon" href="images/favicon.ico">
+  <link rel="icon" href="images/swamp-favicon.png" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="styles/consolidated.css">
 </head>
 <body>
   <header>
-    <img id="logo" src="images/SWAMP DONKEY.png" alt="Swamp Donkey logo">
+    <a href="index.html">
+            <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
+        </a>
   </header>
+
   <nav class="navbar">
     <a href="index.html">Home</a>
     <a href="quote.html">Quick Quote</a>
@@ -77,18 +80,18 @@
     </div>
   </div>
   <footer>
-    <div class="foot">
-      <p>📞 +1 208-547-8375</p>
-      <p>📧 <a href="mailto:swampdonkeymobilemechanics@gmail.com">swampdonkeymobilemechanics@gmail.com</a></p>
-      <p>🗺️ <a href="https://www.google.com/maps/search/?api=1&query=235+S+4th+W+Rexburg%2C+ID+83440" target="_blank" rel="noopener">235 S 4th W Rexburg, ID 83440</a></p>
-      <p id="lastModified"></p>
-    </div>
-    <div class="media">
-      <a href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener"><img src="images/fa.png" alt="Facebook icon"></a>
-      <a href="https://www.instagram.com/" target="_blank" rel="noopener"><img src="images/insta.webp" alt="Instagram icon"></a>
-      <a href="https://x.com/?lang=en" target="_blank" rel="noopener"><img src="images/x.webp" alt="X icon"></a>
-    </div>
-  </footer>
+        <div class="foot">
+            <p>📞 +1 208-547-8375</p>
+            <p>✉ <a>swampdonkeymobilemechanics@gmail.com</a></p>
+            <p>📍 <a href="https://www.google.com/maps/search/?api=1&query=235+S+4th+W+Rexburg%2C+ID+83440" target="_blank" rel="noopener">235 S 4th W Rexburg, ID 83440</a></p>
+            <p id="lastModified"></p>
+        </div>
+        <div class="media">
+            <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener" loading="lazy"><img src="images/fa.png" alt="facebook"></a>
+            <a id="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener" loading="lazy"><img src="images/insta.webp" alt="instagram"></a>
+            <a id="x" href="https://x.com/?lang=en" target="_blank" rel="noopener" loading="lazy"><img src="images/x.webp" alt="x"></a>
+        </div>
+    </footer>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
     const quoteData = {
