@@ -1,3 +1,4 @@
+<!-- contact.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,248 +10,112 @@
     <meta property="og:type" content="Web Page"> 
     <meta property="og:image" content="#"> 
     <meta property="og:url" content="https://github.com/masashi123456/Swamp-Donkey.git"> 
-    <title>Contact - SWAMP DONKEY</title> 
-    <link rel="icon" href="images/favicon.ico"> 
-    <link rel="stylesheet" href="styles/base.css">  
-    <link rel="stylesheet" href="styles/styles.css">  
-    <link rel="stylesheet" href="styles/large.css">  
-    <link rel="stylesheet" href="styles/normalize.css"> 
-
-    <style>
-        /* --- Navigation Bar and Form Styles --- */
-        body {
-            background-color: #f4f4f4;
-            font-family: sans-serif;
-        }
-        .navbar {
-            background-color: #fdf2de;
-            padding: 15px 10px;
-            text-align: center;
-        }
-        .navbar a {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            display: inline-block;
-            padding: 12px 20px;
-            margin: 5px;
-            background-color: #f08c00;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .navbar a:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-        }
-        .container {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-        }
-        .container h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 1.5rem;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            margin-bottom: 0.5rem;
-            color: #555;
-            font-weight: bold;
-        }
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            padding: 10px;
-            margin-bottom: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-        input:focus, textarea:focus {
-            border-color: #f08c00;
-            outline: none;
-        }
-        button[type="submit"] {
-            padding: 12px 20px;
-            background-color: #f08c00;
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
-        }
-        button[type="submit"]:hover {
-            background-color: #cc6914;
-            transform: translateY(-2px);
-        }
-
-        /* --- Confirmation Message Styles --- */
-        #confirmation-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: none; /* Hidden by default */
-            justify-content: center;
-            align-items: center;
-            z-index: 1001;
-            flex-direction: column;
-        }
-        .checkmark-container {
-            width: 100px;
-            height: 100px;
-        }
-        .checkmark-svg {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: block;
-            stroke-width: 4;
-            stroke: #fff;
-            stroke-miterlimit: 10;
-            box-shadow: inset 0px 0px 0px #4bb71b;
-            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
-        }
-        .checkmark-circle {
-            stroke-dasharray: 166;
-            stroke-dashoffset: 166;
-            stroke-width: 4;
-            stroke-miterlimit: 10;
-            stroke: #4bb71b;
-            fill: none;
-            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-        }
-        .checkmark-check {
-            transform-origin: 50% 50%;
-            stroke-dasharray: 48;
-            stroke-dashoffset: 48;
-            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
-        }
-        #confirmation-overlay p {
-            color: white;
-            font-size: 1.5rem;
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-        @keyframes stroke {
-            100% { stroke-dashoffset: 0; }
-        }
-        @keyframes scale {
-            0%, 100% { transform: none; }
-            50% { transform: scale3d(1.1, 1.1, 1); }
-        }
-        @keyframes fill {
-            100% { box-shadow: inset 0px 0px 0px 50px #4bb71b; }
-        }
-    </style>
+    <title>Contact — SWAMP DONKEY</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles/consolidated.css">
 </head>
-<header>
-    <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
-</header>
 <body>
-    <div class="navbar">
+    <header>
+        <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
+    </header>
+
+    <nav class="navbar">
         <a href="index.html">Home</a>
         <a href="quote.html">Quick Quote</a>
-        <a href="index.html#about">About</a>
         <a href="services.html">Services</a>
         <a href="contact.html">Contact</a>
-    </div>
+        <a href="review.html">Reviews</a>
+    </nav>
 
-    <div class="container">
+    <main class="container">
         <h1>Contact Swamp Donkey</h1>
-        <!-- MODIFIED: Form action updated to Formspree URL -->
+        <!-- Formspree-powered contact form -->
         <form id="contact-form" action="https://formspree.io/f/xqabvrbv" method="POST">
             <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" required />
+            <input type="text" id="name" name="name" required>
 
             <label for="email">Your E-mail Address</label>
-            <input type="email" id="email" name="email" required />
+            <input type="email" id="email" name="email" required>
 
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="10" required></textarea>
 
             <button type="submit">Send Message</button>
         </form>
-    </div>
+    </main>
 
-    <footer>
-        <!-- The footer from your other pages would go here -->
-    </footer>
-
-    <!-- Confirmation Overlay HTML -->
-    <div id="confirmation-overlay">
+    <!-- Confirmation overlay -->
+    <div id="confirmation-overlay" class="confirmation-overlay">
         <div class="checkmark-container">
             <svg class="checkmark-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                 <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7−16.8"/>
             </svg>
         </div>
         <p>Message Sent!</p>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const messageFromQuote = urlParams.get('message');
-            if (messageFromQuote) {
-                document.getElementById('message').value = messageFromQuote;
-            }
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(location.search);
+        const prefill = params.get('message');
+        if (prefill) document.getElementById('message').value = prefill;
 
-            // MODIFIED: Handle form submission with fetch for Formspree
-            const contactForm = document.getElementById('contact-form');
-            const confirmationOverlay = document.getElementById('confirmation-overlay');
-            
-            contactForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission
+        const form = document.getElementById('contact-form');
+        const overlay = document.getElementById('confirmation-overlay');
 
-                const formData = new FormData(contactForm);
-                
-                fetch(contactForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                }).then(response => {
-                    if (response.ok) {
-                        // Show the confirmation overlay on success
-                        confirmationOverlay.style.display = 'flex';
-                        // Hide the confirmation and reset the form after a delay
-                        setTimeout(() => {
-                            confirmationOverlay.style.display = 'none';
-                            contactForm.reset();
-                             // Clear the pre-filled message from the URL
-                            if (messageFromQuote) {
-                                document.getElementById('message').value = '';
-                            }
-                        }, 3000);
-                    } else {
-                        // Handle errors if the submission fails
-                        response.json().then(data => {
-                            if (Object.hasOwn(data, 'errors')) {
-                                alert(data["errors"].map(error => error["message"]).join(", "));
-                            } else {
-                                alert('Oops! There was a problem submitting your form.');
-                            }
-                        });
-                    }
-                }).catch(error => {
-                    // Handle network errors
-                    alert('Oops! There was a network error.');
-                });
-            });
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(r => {
+                if (r.ok) {
+                    overlay.style.display = 'flex';
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                        form.reset();
+                    }, 3000);
+                } else {
+                    r.json().then(data => {
+                        const msg = data.errors
+                            ? data.errors.map(er => er.message).join(', ')
+                            : 'Oops! There was a problem.';
+                        alert(msg);
+                    });
+                }
+            }).catch(() => alert('Network error. Please try again.'));
         });
+    });
     </script>
+    <footer>
+        <div class="foot">
+            <p>📞 +1 208-547-8375</p>
+            <p>📧 <a href="mailto:swampdonkeymobilemechanics@gmail.com">swampdonkeymobilemechanics@gmail.com</a></p>
+            <p>🗺️
+                <a
+                href="https://www.google.com/maps/search/?api=1&query=235+S+4th+W+Rexburg%2C+ID+83440"
+                target="_blank"
+                rel="noopener"
+                >
+                235 S 4th W Rexburg, ID 83440
+                </a>
+            </p>
+        <p id="lastModified"></p>
+        </div>
+        <div class="media">
+            <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener" loading="lazy">
+                <img src="images/fa.png" alt="facebook">
+            </a>
+            <a id="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener" loading="lazy">
+                <img src="images/insta.webp" alt="instagram">
+            </a>
+            <a id="x" href="https://x.com/?lang=en" target="_blank" rel="noopener" loading="lazy">
+                <img src="images/x.webp" alt="x">
+            </a>
+        </div>
+</footer>
 </body>
 </html>
+`

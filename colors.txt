@@ -7,3 +7,4 @@ Hex Code	Approx. Use
 #cc6914	Brighter orange accents
 #5d665d	Dark gray-green shading
 #553115	Moose head shading
+#77543a
