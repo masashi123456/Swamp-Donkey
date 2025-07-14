@@ -17,7 +17,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
   color: #322313;
-  background-image: url('/images/your-car-1.jpg');
+  background-image: url('/images/car-1.jpg');
 
   /* 3) Make it cover the entire viewport */
   background-size: cover;
