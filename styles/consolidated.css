@@ -2,7 +2,6 @@ html {
   scroll-behavior: smooth;
 }
 
-
 /* Normalize and Base */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -15,7 +14,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
   color: #322313;
-  background-image: url('/images/car-1.jpg');
+
 
   /* 3) Make it cover the entire viewport */
   background-size: cover;
