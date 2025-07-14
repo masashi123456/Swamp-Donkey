@@ -1,0 +1,113 @@
+@media screen and (min-width: 32rem){
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fcf4e2;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .navbar {
+    background-color: #ab5313;
+    overflow: hidden;
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .navbar > * {
+    flex: 1;
+    text-align: center;
+  }
+  
+
+  .navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+  }
+
+  .navbar a:hover {
+    background-color: #739394;
+  }
+
+  #logo {
+    display: block;
+    margin: 1rem auto; /* top/bottom 1rem, left/right auto */
+    width: 500px; 
+  }
+
+  .form-container {
+  display: flex;
+  justify-content: center;   /* horizontal centering */
+  padding: 2rem 1rem;        /* top/bottom and a little side padding */
+  }
+
+  /* Card look */
+  .form-card {
+    background: #e89a2e;                            /* white background */
+    padding: 2rem;                               /* space inside */
+    border-radius: 8px;                          /* rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);    /* soft shadow */
+    max-width: 500px;                            /* don’t get too wide */
+    width: 100%;                                 /* but be responsive */
+  }
+
+  /* Optional: tighten up form fields */
+  .form-card form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-card label {
+    margin-top: 1rem;
+  }
+
+  .form-card input,
+  .form-card textarea,
+  .form-card button {
+    margin-top: 0.5rem;
+  }
+
+
+
+  /*footer*/
+  footer{
+      background: linear-gradient(rgb(231, 152, 60), rgb(238, 192, 113));
+      padding: 2rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      border-top: 5px solid rgb(214, 152, 38)
+  }
+
+  .media{
+      display: flex;
+      justify-content: left;
+      gap: 2rem;
+      
+  }
+
+
+  .media img{
+      width:32px;
+      filter: drop-shadow(0 0 4px grey);
+  }
+
+  .media a:hover {
+      transform: scale(1.2);
+      filter: drop-shadow(0 0 5px rgba(0,0,0,0.4));
+  }
+
+  .foot{
+      line-height: 2;
+      font-size: 1rem;
+  }
+
+
+
+}
+
+
+    
+
+

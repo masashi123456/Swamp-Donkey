@@ -1,3 +1,8 @@
+html {
+  scroll-behavior: smooth;
+}
+
+
 /* Normalize and Base */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -10,7 +15,38 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
   color: #322313;
+  background-image: url('/images/your-car-1.jpg');
+
+  /* 3) Make it cover the entire viewport */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  overflow-x: hidden;
 }
+
+/* slide-in from left */
+@keyframes slide-in-left {
+  from { transform: translateX(200%); }
+  to   { transform: translateX(0); }
+}
+.slide-in {
+  animation: slide-in-left 0.5s ease-out forwards;
+}
+
+
+/* Ensure your about section doesn’t have an opaque background */
+.about-section {
+  background-color: transparent;
+}
+
+
+
+/* utility class to trigger the animation */
+.slide-in-up {
+  animation: slide-in-up 0.5s ease-out forwards;
+}
+
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
 
@@ -135,7 +171,7 @@ button[type="submit"]:hover, .action-button:hover {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* Services Page */
-.about-section { display: flex; gap: 2rem; background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); align-items: center; margin-bottom: 2rem; margin-top: 3%; margin-bottom: 5%; margin-left: 10%; margin-right: 10%;}
+.about-section { display: flex; gap: 2rem; background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); align-items: center; margin-top: 3%; margin-bottom: 8%; margin-left: 30%; margin-right: 30%;}
 .about-text h2 { font-size: 2.5rem; margin-bottom: 1rem; }
 .about-text p { font-size: 1.1rem; color: #555; line-height: 1.6; }
 @media (max-width: 768px) { .about-section { flex-direction: column; text-align: center; } }
@@ -155,11 +191,41 @@ button[type="submit"]:hover, .action-button:hover {
 #confirmation-message { transition: opacity .5s, transform .5s; }
 
 /* Footer */
-footer { background-color: #77543a !important; padding: 2rem 1rem !important; }
+footer { background-color: #77543a !important; padding: 2rem 1rem !important;}
 .media { display: flex !important; justify-content: center !important; gap: 1rem !important; flex-wrap: wrap !important; margin-bottom: 8%;}
 .media img { width: 32px !important; filter: drop-shadow(0 0 4px grey) !important; transition: transform .2s, filter .2s !important; }
 .media a:hover img { transform: scale(1.2) !important; filter: drop-shadow(0 0 5px rgba(0,0,0,0.4)) !important; }
 .foot { text-align: center !important; margin-top: 2rem !important; color: #fff !important; font-size: 1rem !important; line-height: 1.8 !important; border: 3px solid #77543a !important; padding: 1rem !important; border-radius: 8px !important; }
+footer a[href*="google.com/maps"]:hover {
+    text-decoration: underline;
+}
+footer a[href^="tel:"]:hover {
+    text-decoration: underline;
+}
+
+footer a[href^="mailto:"]:hover {
+    text-decoration: underline;
+}
+
+
+/* Only the home page gets the car-image background */
+body#home {
+  background-color: #fcf4e2;                      /* your fallback color */
+  background-image: url('/images/car-1.jpg');     /* your car image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Keep the header opaque so the image never shows under your logo/nav */
+body#home header {
+  background-color: #fcf4e2; /* or white, whichever matches your design */
+  position: relative;
+  z-index: 10;
+}
+
+
+
 
 /* Responsive Overrides */
 @media screen and (min-width: 32rem) { .navbar > * { flex: 1; } }
