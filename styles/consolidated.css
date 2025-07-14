@@ -3,6 +3,8 @@ html {
 }
 
 
+
+
 /* Normalize and Base */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -230,3 +232,5 @@ body#home header {
 /* Responsive Overrides */
 @media screen and (min-width: 32rem) { .navbar > * { flex: 1; } }
 @media screen and (min-width: 64rem) { .navbar a { font-size: 30px; } .foot p { font-size: 20px; } }
+
+
