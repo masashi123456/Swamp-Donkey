@@ -4,32 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Instant Quote Generator - Swamp Donkey</title>
-  <meta name="author" content="Ryan Griffin">
-  <meta name="description" content="Instant Quote Generator for Swamp Donkey Mobile Mechanics">
-  <meta property="og:title" content="Swamp Donkey Quote">
-  <meta property="og:type" content="Web Page">
-  <meta property="og:image" content="#">
-  <meta property="og:url" content="https://github.com/masashi123456/Swamp-Donkey.git">
-
   <link rel="icon" href="images/favicon.ico">
-  <link rel="stylesheet" href="styles/normalize.css">
-  <link rel="stylesheet" href="styles/consolidated.css">
-
-  <!-- Tailwind for the card layout -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Flatpickr for date/time picker -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <!-- Inter font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/consolidated.css">
 </head>
-
 <body>
-  <!-- Header / Logo -->
   <header>
     <img id="logo" src="images/SWAMP DONKEY.png" alt="Swamp Donkey logo">
   </header>
-
-  <!-- Global Navbar -->
   <nav class="navbar">
     <a href="index.html">Home</a>
     <a href="quote.html">Quick Quote</a>
@@ -37,30 +20,21 @@
     <a href="contact.html">Contact</a>
     <a href="review.html">Reviews</a>
   </nav>
-
-  <!-- Main Quote Generator -->
   <main class="quote-container">
     <div class="quote-card">
-      <!-- Step 1: VIN Entry -->
       <div class="text-center mb-8">
         <h1 class="text-3xl font-bold main-heading">Instant Quote Generator</h1>
         <p class="text-gray-500 mt-2">Start by entering your vehicle's VIN below.</p>
       </div>
-
       <div id="vinEntryContainer">
         <label for="vinInput" class="form-label">Vehicle VIN</label>
         <div class="flex flex-col sm:flex-row gap-2">
-          <input type="text"
-                 id="vinInput"
-                 class="custom-input flex-grow"
-                 placeholder="Enter 11–17 digit VIN">
+          <input type="text" id="vinInput" class="custom-input flex-grow" placeholder="Enter 11–17 digit VIN">
           <button id="vinSubmitButton" class="action-button">Continue</button>
         </div>
         <p id="vinError" class="vin-error-message"></p>
       </div>
-
-      <!-- Step 2: Service Selection -->
-      <div id="serviceSelectorContainer" class="space-y-6" style="display:none;">
+      <div id="serviceSelectorContainer" class="space-y-6 hidden">
         <div>
           <label for="vehicleType" class="form-label">1. Select Vehicle Type</label>
           <select id="vehicleType" class="custom-select w-full">
@@ -83,89 +57,59 @@
           </select>
         </div>
       </div>
-
-      <!-- Step 3: Quote Result -->
       <div id="quoteResult" class="mt-8 text-center"></div>
     </div>
   </main>
-
-  <!-- Modal for Additional Details -->
-<div id="detailsModal" class="modal-overlay">
+  <div id="detailsModal" class="modal-overlay">
     <div class="modal-content">
-        <h2>Additional Details</h2>
-        <p class="text-gray-600 text-sm mb-4">
-        Please provide a few more details so we can finalize your request.
-        </p>
-        <div class="modal-form">
-        <div class="modal-form-group">
-            <label for="vehicleYear">Vehicle Year</label>
-            <input type="number" id="vehicleYear" class="custom-input" required>
-        </div>
-        <div class="modal-form-group">
-            <label for="vehicleMake">Vehicle Make</label>
-            <input type="text" id="vehicleMake" class="custom-input" required>
-        </div>
-        <div class="modal-form-group">
-            <label for="vehicleModel">Vehicle Model</label>
-            <input type="text" id="vehicleModel" class="custom-input" required>
-        </div>
-        <div class="modal-form-group">
-            <label for="vehicleLocation">Location of Vehicle</label>
-            <input type="text" id="vehicleLocation" class="custom-input" required>
-        </div>
-        <div class="modal-form-group">
-            <label for="availability">Select a Date &amp; Time</label>
-            <input type="text" id="availability" class="custom-input" required>
-        </div>
+      <h2>Additional Details</h2>
+      <div class="modal-form">
+        <input type="number" id="vehicleYear" placeholder="Vehicle Year" class="custom-input">
+        <input type="text" id="vehicleMake" placeholder="Vehicle Make" class="custom-input">
+        <input type="text" id="vehicleModel" placeholder="Vehicle Model" class="custom-input">
+        <input type="text" id="vehicleLocation" placeholder="Location of Vehicle" class="custom-input">
+        <input type="text" id="availability" placeholder="Select a Date & Time" class="custom-input">
         <div class="modal-buttons">
-            <button id="cancelButton" class="modal-button-secondary">Cancel</button>
-            <button id="confirmButton" class="action-button">Confirm Request</button>
+          <button id="cancelButton" class="modal-button-secondary">Cancel</button>
+          <button id="confirmButton" class="action-button">Confirm Request</button>
         </div>
+      </div>
     </div>
-</div>
- <!-- Page Footer -->
-<footer>
-        <div class="foot">
-            <p>📞 +1 208-547-8375</p>
-            <p>📧 <a href="mailto:swampdonkeymobilemechanics@gmail.com">swampdonkeymobilemechanics@gmail.com</a></p>
-            <p>🗺️
-                <a
-                href="https://www.google.com/maps/search/?api=1&query=235+S+4th+W+Rexburg%2C+ID+83440"
-                target="_blank"
-                rel="noopener"
-                >
-                235 S 4th W Rexburg, ID 83440
-                </a>
-            </p>
-            <p id="lastModified"></p>
-        </div>
-        <div class="media">
-            <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener" loading="lazy">
-                <img src="images/fa.png" alt="facebook">
-            </a>
-            <a id="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener" loading="lazy">
-                <img src="images/insta.webp" alt="instagram">
-            </a>
-            <a id="x" href="https://x.com/?lang=en" target="_blank" rel="noopener" loading="lazy">
-                <img src="images/x.webp" alt="x">
-            </a>
-        </div>
-</footer>
-
-  <!-- Flatpickr + Quote Logic -->
+  </div>
+  <footer>
+    <div class="foot">
+      <p>📞 +1 208-547-8375</p>
+      <p>📧 <a href="mailto:swampdonkeymobilemechanics@gmail.com">swampdonkeymobilemechanics@gmail.com</a></p>
+      <p>🗺️ <a href="https://www.google.com/maps/search/?api=1&query=235+S+4th+W+Rexburg%2C+ID+83440" target="_blank" rel="noopener">235 S 4th W Rexburg, ID 83440</a></p>
+      <p id="lastModified"></p>
+    </div>
+    <div class="media">
+      <a href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener"><img src="images/fa.png" alt="Facebook icon"></a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener"><img src="images/insta.webp" alt="Instagram icon"></a>
+      <a href="https://x.com/?lang=en" target="_blank" rel="noopener"><img src="images/x.webp" alt="X icon"></a>
+    </div>
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
-    // Quote data
     const quoteData = {
       "Common Maintenance": {
-        "Oil Change": { Car:75, SUV:95, Truck:110, "Big Vehicle":150, description:"Replacing engine oil and filter." },
-        "Tire Rotation": { Car:40, SUV:50, Truck:60, "Big Vehicle":80, description:"Rotating tires to ensure even wear." },
-        /* ...and so on for all categories/services... */
+        "Oil Change": { Car: 75, SUV: 95, Truck: 110, "Big Vehicle": 150, description: "Replacing engine oil and filter." },
+        "Tire Rotation": { Car: 40, SUV: 50, Truck: 60, "Big Vehicle": 80, description: "Rotating tires to ensure even wear." },
+        "Brake Inspection": { Car: 50, SUV: 60, Truck: 70, "Big Vehicle": 90, description: "Checking brake pads, rotors, and fluid." },
+        "Battery Check": { Car: 30, SUV: 40, Truck: 50, "Big Vehicle": 60, description: "Testing battery health and terminals." }
       },
-      /* Replicas for Repairs & Diagnostics and Emergency & Roadside Assistance */
+      "Repairs & Diagnostics": {
+        "Check Engine Diagnostics": { Car: 80, SUV: 90, Truck: 110, "Big Vehicle": 140, description: "Using diagnostic tools to check engine issues." },
+        "Brake Replacement": { Car: 250, SUV: 300, Truck: 350, "Big Vehicle": 450, description: "Replacing brake pads and rotors." },
+        "AC Repair": { Car: 150, SUV: 200, Truck: 250, "Big Vehicle": 350, description: "Repairing or recharging air conditioning." }
+      },
+      "Emergency & Roadside Assistance": {
+        "Jump Start": { Car: 40, SUV: 50, Truck: 60, "Big Vehicle": 80, description: "Battery jump start service." },
+        "Towing": { Car: "$100 - $300", SUV: "$120 - $350", Truck: "$150 - $400", "Big Vehicle": "$200 - $500", description: "Vehicle towing service." },
+        "Lockout Service": { Car: 60, SUV: 70, Truck: 80, "Big Vehicle": 100, description: "Unlocking vehicle doors." }
+      }
     };
 
-    // DOM refs
     const vinEntryContainer = document.getElementById("vinEntryContainer");
     const vinInput = document.getElementById("vinInput");
     const vinError = document.getElementById("vinError");
@@ -178,130 +122,56 @@
     const detailsModal = document.getElementById("detailsModal");
     const cancelButton = document.getElementById("cancelButton");
     const confirmButton = document.getElementById("confirmButton");
-
     let userVIN = "";
     let currentQuoteDetails = {};
-
-    function handleVinSubmit() {
+    vinSubmitButton.onclick = () => {
       const vin = vinInput.value.trim().toUpperCase();
       if (vin.length >= 11 && vin.length <= 17) {
         userVIN = vin;
         vinError.textContent = "";
         vinEntryContainer.style.display = "none";
-        serviceSelectorContainer.style.display = "block";
-        populateCategories();
+        serviceSelectorContainer.classList.remove("hidden");
+        serviceCategorySelect.innerHTML = '<option value="">-- Choose a Category --</option>';
+        Object.keys(quoteData).forEach(cat => {
+          serviceCategorySelect.innerHTML += `<option value="${cat}">${cat}</option>`;
+        });
       } else {
         vinError.textContent = "Please enter a valid VIN (11–17 characters).";
       }
-    }
-
-    function populateCategories() {
-      serviceCategorySelect.innerHTML = `<option value="">-- Choose a Category --</option>`;
-      Object.keys(quoteData).forEach(cat => {
-        const opt = document.createElement("option");
-        opt.value = cat;
-        opt.textContent = cat;
-        serviceCategorySelect.appendChild(opt);
+    };
+    serviceCategorySelect.onchange = () => {
+      specificServiceSelect.innerHTML = '<option value="">-- Choose a Service --</option>';
+      if (!quoteData[serviceCategorySelect.value]) return;
+      Object.keys(quoteData[serviceCategorySelect.value]).forEach(service => {
+        specificServiceSelect.innerHTML += `<option value="${service}">${service}</option>`;
       });
-    }
-
+    };
     function displayQuote() {
       const vehicle = vehicleTypeSelect.value;
       const category = serviceCategorySelect.value;
       const service = specificServiceSelect.value;
-      if (!vehicle || !category || !service) {
-        quoteResultDiv.innerHTML = "";
-        return;
-      }
-
+      if (!vehicle || !category || !service || !quoteData[category][service]) return quoteResultDiv.innerHTML = "";
       const { description } = quoteData[category][service];
-      const priceVal = quoteData[category][service][vehicle];
-      const priceString = typeof priceVal === "string" ? priceVal : `$${priceVal}`;
-      const priceHTML = typeof priceVal === "string"
-        ? `<p class="text-4xl font-bold price-accent-text">${priceString}</p>`
-        : `<p class="text-5xl font-bold price-accent-text">${priceString}</p>`;
-
-      currentQuoteDetails = { vehicle, service, priceString };
-
-      quoteResultDiv.innerHTML = `
-        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-          <h3 class="text-lg font-semibold main-heading">Estimated Quote</h3>
-          <div class="my-4">${priceHTML}</div>
-          <p class="text-gray-600 max-w-md mx-auto">${description}</p>
-          <div class="mt-6">
-            <button id="orderNowButton" class="action-button">Order Now</button>
-          </div>
-          <p class="text-xs text-gray-400 mt-4">*This is an estimate. Prices may vary.</p>
-        </div>
-      `;
-
-      document.getElementById("orderNowButton")
-        .addEventListener("click", () => detailsModal.style.display = "flex");
+      const price = quoteData[category][service][vehicle];
+      currentQuoteDetails = { vehicle, service, priceString: typeof price === "string" ? price : `$${price}` };
+      quoteResultDiv.innerHTML = `<div class='bg-gray-50 p-6 rounded-lg border'><h3 class='text-lg font-semibold'>Estimated Quote</h3><div class='my-4 text-4xl font-bold'>${currentQuoteDetails.priceString}</div><p>${description}</p><button id='orderNowButton' class='action-button mt-4'>Order Now</button></div>`;
+      document.getElementById("orderNowButton").onclick = () => detailsModal.style.display = "flex";
     }
-
-    // Modal controls
-    cancelButton.addEventListener("click", () => detailsModal.style.display = "none");
-    confirmButton.addEventListener("click", () => {
+    vehicleTypeSelect.onchange = displayQuote;
+    specificServiceSelect.onchange = displayQuote;
+    cancelButton.onclick = () => detailsModal.style.display = "none";
+    confirmButton.onclick = () => {
       const year = document.getElementById("vehicleYear").value;
       const make = document.getElementById("vehicleMake").value;
       const model = document.getElementById("vehicleModel").value;
       const location = document.getElementById("vehicleLocation").value;
       const availability = document.getElementById("availability").value;
-      if (!year || !make || !model || !location || !availability) {
-        return alert("Please fill out all additional details.");
-      }
-      const finalMessage = `
-I would like to schedule a service.
-––––––––––––––––––––––––––––––––––––
-VEHICLE & LOCATION:
-- Year: ${year}
-- Make: ${make}
-- Model: ${model}
-- Location: ${location}
-
-AVAILABILITY:
-- ${availability}
-
-QUOTE DETAILS:
-- Vehicle Type: ${currentQuoteDetails.vehicle}
-- Service: ${currentQuoteDetails.service}
-- Estimated Quote: ${currentQuoteDetails.priceString}
-- VIN: ${userVIN}
-
-Please contact me to confirm. Thank you.
-      `.trim();
-
-      window.location.href = `contact.html?message=${encodeURIComponent(finalMessage)}`;
-    });
-
-    // VIN handling & category/service selection
-    vinSubmitButton.addEventListener("click", handleVinSubmit);
-    vinInput.addEventListener("keypress", e => e.key === "Enter" && handleVinSubmit());
-    serviceCategorySelect.addEventListener("change", () => {
-      specificServiceSelect.innerHTML = `<option value="">-- Choose a Service --</option>`;
-      quoteResultDiv.innerHTML = "";
-      if (quoteData[serviceCategorySelect.value]) {
-        Object.keys(quoteData[serviceCategorySelect.value])
-          .filter(s => s !== "description")
-          .forEach(svc => {
-            const opt = document.createElement("option");
-            opt.value = svc;
-            opt.textContent = svc;
-            specificServiceSelect.appendChild(opt);
-          });
-      }
-    });
-    vehicleTypeSelect.addEventListener("change", displayQuote);
-    specificServiceSelect.addEventListener("change", displayQuote);
-
-    // Flatpickr init
-    document.addEventListener("DOMContentLoaded", () => {
-      flatpickr("#availability", {
-        enableTime: true,
-        dateFormat: "F j, Y at h:i K",
-        minDate: "today"
-      });
-    });
+      if (!year || !make || !model || !location || !availability) return alert("Please fill all fields.");
+      const message = `Year: ${year}\nMake: ${make}\nModel: ${model}\nLocation: ${location}\nAvailability: ${availability}\nVehicle Type: ${currentQuoteDetails.vehicle}\nService: ${currentQuoteDetails.service}\nQuote: ${currentQuoteDetails.priceString}\nVIN: ${userVIN}`;
+      window.location.href = `contact.html?message=${encodeURIComponent(message)}`;
+    };
+    flatpickr("#availability", { enableTime: true, dateFormat: "F j, Y at h:i K", minDate: "today" });
+    document.getElementById("lastModified").textContent = `Last Updated: ${document.lastModified}`;
   </script>
 </body>
 </html>
