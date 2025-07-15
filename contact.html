@@ -14,7 +14,7 @@
     <link rel="icon" href="images/swamp-favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/consolidated.css">
 </head>
-<body class="slide-in">
+<body class="slide-in" id="contact-image">
     <header>
         <a href="index.html">
             <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
@@ -35,6 +35,9 @@
         <form id="contact-form" action="https://formspree.io/f/mjkrzwkk" method="POST">
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" required>
+
+            <label for="phone-number">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
 
             <label for="email">Your E-mail Address</label>
             <input type="email" id="email" name="email" required>
