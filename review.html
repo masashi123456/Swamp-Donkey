@@ -16,7 +16,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="slide-in">
+<body class="slide-in" id="review-image">
     <header>
         <a href="index.html">
             <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
@@ -35,12 +35,12 @@
                 <h2 class="text-3xl font-bold text-center mb-6">Leave Us a Review</h2>
                 <form id="reviewForm" class="space-y-6">
                     <div>
-                        <label for="reviewerName" class="block font-medium">Your Name</label>
+                        <label for="reviewerName" class="block font-medium text-black font-bold">Your Name</label>
                         <input type="text" id="reviewerName" name="reviewerName" required
                                class="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:ring focus:border-accent">
                     </div>
                     <div>
-                        <label class="block font-medium text-center mb-2">Your Rating</label>
+                        <label class="block font-medium text-center mb-2 text-black font-bold">Your Rating</label>
                         <div id="starRating" class="star-rating">
                             <input type="radio" id="star5" name="rating" value="5" required/><label for="star5"><i class="fas fa-star"></i></label>
                             <input type="radio" id="star4" name="rating" value="4"/><label for="star4"><i class="fas fa-star"></i></label>
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="space-y-8">
-                <h2 class="text-3xl font-bold text-center">What Our Customers Are Saying</h2>
+                <h2 class="text-3xl font-bold text-center text-white">What Our Customers Are Saying</h2>
                 <div id="reviewsContainer" class="space-y-6">
                 </div>
             </div>

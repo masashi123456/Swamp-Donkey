@@ -188,6 +188,9 @@ button[type="submit"]:hover, .action-button:hover {
 .submit-button { background: #f08c00; }
 .submit-button:hover { background: #cc6914; }
 #confirmation-message { transition: opacity .5s, transform .5s; }
+.customer-title-review {
+  color: white;
+}
 
 /* Footer */
 footer { background-color: #77543a !important; padding: 2rem 1rem !important;}
@@ -233,6 +236,17 @@ body#contact-image {
 
   /* point to your truck-bed photo */
   background-image: url("../images/car-2.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+body#review-image {
+  /* ditch any solid background so your image shows through */
+  background-color: transparent !important;
+
+  /* point to your truck-bed photo */
+  background-image: url("../images/tetons.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
