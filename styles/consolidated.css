@@ -160,13 +160,13 @@ button[type="submit"]:hover, .action-button:hover {
 .form-label { font-weight: 500; }
 .custom-input, .custom-select { border-color: #d1d5db; }
 .custom-input:focus, .custom-select:focus { border-color: #f08c00; box-shadow: 0 0 0 2px #f08c00; }
-.action-button { background-color: #f08c00; color: #fff; padding: .75rem 1.5rem; border-radius: .5rem; font-weight: 600; border: none; cursor: pointer; transition: background-color .3s, transform .2s; }
+.action-button { background-color: #f08c00; color: #fff; padding: .2rem .4rem; border-radius: .5rem; font-weight: 600; border: none; cursor: pointer; transition: background-color .3s, transform .2s; }
 .action-button:hover { background-color: #cc6914; transform: translateY(-2px); }
 .vin-error-message { color: #ef4444; font-size: .875rem; margin-top: .5rem; min-height: 1.25rem; }
 
 /* Modal */
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; animation: fadeIn .3s ease; }
-.modal-content { background: #fff; padding: 2rem; border-radius: .75rem; max-width: 500px; width: 90%; box-shadow: 0 5px 25px rgba(0,0,0,0.2); }
+.modal-content { background: #fff; padding: 4rem; border-radius: .75rem; max-width: 500px; width: 90%; box-shadow: 0 5px 25px rgba(0,0,0,0.2); text-align: center; line-height: 3;}
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* Services Page */
