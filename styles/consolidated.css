@@ -210,7 +210,7 @@ footer a[href^="mailto:"]:hover {
 /* Only the home page gets the car-image background */
 body#home {
   background-color: #fcf4e2;                      /* your fallback color */
-  background-image: url('images/car-1.jpg');     /* your car image */
+  background-image: url('/images/car-1.jpg');     /* your car image */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
