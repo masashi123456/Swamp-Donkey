@@ -193,7 +193,7 @@ button[type="submit"]:hover, .action-button:hover {
 }
 
 /* Footer */
-footer { background-color: #77543a !important; padding: 2rem 1rem !important;}
+footer { background-color: #77543a !important; padding: 2rem 1rem !important; font-family: 'Arial', sans-serif;}
 .media { display: flex !important; justify-content: center !important; gap: 1rem !important; flex-wrap: wrap !important; margin-bottom: 8%;}
 .media img { width: 32px !important; filter: drop-shadow(0 0 4px grey) !important; transition: transform .2s, filter .2s !important; }
 .media a:hover img { transform: scale(1.2) !important; filter: drop-shadow(0 0 5px rgba(0,0,0,0.4)) !important; }
