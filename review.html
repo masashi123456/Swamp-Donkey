@@ -94,13 +94,13 @@
     </footer>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, uploadBytes, getDownloadURL, ref, getStorage} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
         const firebaseConfig = {
         apiKey: "AIzaSyDE4YNMlgZm9Uax_-zXLk3dHlYOWpftmw4",
         authDomain: "swamp-donkey-website-68780.firebaseapp.com",
         projectId: "swamp-donkey-website-68780",
-        storageBucket: "swamp-donkey-website-68780.firebasestorage.app",
+        storageBucket: "swamp-donkey-website-68780.firebasestorage.appspot.com",
         messagingSenderId: "642498767447",
         appId: "1:642498767447:web:fe862e8ea7d93a0c9d9112"
         };
@@ -110,6 +110,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const reviewsRef = collection(db, "reviews");
+        const storage = getStorage(app);
 
         const reviewForm = document.getElementById('reviewForm');
         const confirmationMessage = document.getElementById('confirmation-message');
@@ -141,7 +142,7 @@
             confirmationMessage.style.opacity = '1';
             setTimeout(() => confirmationMessage.style.opacity = '0', 4000);
 
-            const storage = getStorage(app);
+            
 
            
         });
