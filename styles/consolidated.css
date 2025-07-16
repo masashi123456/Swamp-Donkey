@@ -48,7 +48,7 @@
   }
 
   img { max-width: 100%; display: block; }
-  /*a { text-decoration: none; color: inherit; }*/
+  a { text-decoration: none; color: inherit; }
 
   /* Logo */
   #logo {
@@ -173,7 +173,7 @@
   /* Services Page */
   .about-section { display: flex; flex-direction:column; gap: 2rem; background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); align-items: center; margin: 5% auto 8% auto; width: 80%;}
    .about-section h2{font-size: 4rem; text-align: center; margin-bottom: 2rem;}
-   .trust{
+   #trust{
     font-size: 4rem;
    }
    #wrench{display: flex; flex-direction:column; align-items: center; width: 15%;}
