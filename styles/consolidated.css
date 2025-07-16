@@ -172,7 +172,7 @@
 
   /* Services Page */
   .about-section { display: flex; flex-direction:column; gap: 2rem; background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); align-items: center; margin: 5% auto 8% auto; width: 80%;}
-   h2{font-size: 4rem; text-align: center; margin-bottom: 2rem;}
+   .about-section h2{font-size: 4rem; text-align: center; margin-bottom: 2rem;}
    .trust{
     font-size: 4rem;
    }
