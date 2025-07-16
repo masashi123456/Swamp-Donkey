@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ | SWAMP DONKEY</title>
+  <meta name="author" content="David Lunceford, Masashi Ota, Ryan Griffin">
+  <meta name="description" content="Frequently Asked Questions for Swamp Donkey Mobile Mechanic Services.">
+  <meta property="og:title" content="Swamp Donkey FAQ">
+  <meta property="og:type" content="Web Page">
+  <meta property="og:image" content="#">
+  <meta property="og:url" content="https://github.com/masashi123456/Swamp-Donkey.git">
+
+  <!-- File paths are assumed to be correct based on the site structure -->
+  <link rel="icon" href="images/swamp-favicon.png" type="image/png">
+  <link rel="stylesheet" href="styles/consolidated.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/small.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Slide-in from top animation on all pages */
+    @keyframes slideInFromTop {
+      from { opacity: 0; transform: translateY(-20%); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Apply animation to entire page */
+    body {
+      animation: slideInFromTop 0.8s ease-out;
+    }
+
+    /* This rule correctly only applies to the home page, not this FAQ page */
+    body#home header {
+      background-color: #fcf4e2;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Styling for the interactive FAQ section */
+    details {
+      margin-bottom: 1rem;
+      border: 1px solid #d1d5db; /* Tailwind gray-300 */
+      border-radius: 0.5rem; /* 8px */
+      background-color: #f9fafb; /* Tailwind gray-50 */
+      transition: background-color 0.2s ease-in-out;
+    }
+    details:hover {
+        background-color: #f3f4f6; /* Tailwind gray-100 */
+    }
+
+    summary {
+      font-weight: 600; /* semibold */
+      cursor: pointer;
+      list-style: none; /* Removes the default triangle */
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Hide the default marker in WebKit browsers */
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    /* Custom plus/minus icon */
+    summary::after {
+      content: '+';
+      font-size: 1.5rem;
+      font-weight: 300; /* light */
+      transition: transform 0.2s ease-in-out;
+    }
+
+    details[open] summary::after {
+      content: '−'; /* Using a proper minus sign */
+      transform: rotate(180deg);
+    }
+    
+    details[open] summary {
+        border-bottom: 1px solid #d1d5db;
+    }
+
+    details div {
+      padding: 1rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<!-- Set body ID to "faq" to distinguish from other pages -->
+<body id="faq" class="bg-white text-gray-800 font-sans">
+  
+  <header class="shadow-md">
+    <a href="index.html" class="flex justify-center py-4 bg-white">
+      <!-- Ensure the logo path is correct -->
+      <img id="logo" src="images/SWAMP DONKEY.png" alt="Swamp Donkey company logo" class="h-20">
+    </a>
+  </header>
+
+  <!-- Main Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="quote.html">Quick Quote</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="review.html">Reviews</a>
+        <a href="faq.html">FAQs</a>
+    </nav>
+
+  <!-- Main Content Area -->
+  <main id="top" class="py-12 px-4 max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold text-center mb-10 text-gray-900">Frequently Asked Questions</h1>
+    
+    <div class="faq-container space-y-4">
+      
+      <details>
+        <summary>What areas do you serve?</summary>
+        <div>Swamp Donkey Mobile Mechanic primarily serves the Rexburg, Idaho area and surrounding communities within a 30-mile radius. If you are outside this area, please call us, as we may still be able to assist you for an additional travel fee.</div>
+      </details>
+
+      <details>
+        <summary>What are your operating hours?</summary>
+        <div>Our standard hours are Monday to Friday, 8:00 AM to 6:00 PM, and Saturday from 9:00 AM to 3:00 PM. We are closed on Sundays. Emergency roadside assistance may be available outside these hours; please call for availability.</div>
+      </details>
+
+      <details>
+        <summary>Do I need to provide parts or tools?</summary>
+        <div>No, you do not. Swamp Donkey comes fully equipped with the tools necessary for most repairs. We also source high-quality parts for your vehicle. If you have already purchased your own parts, we can install them, but please note that we cannot warranty parts provided by the customer.</div>
+      </details>
+
+      <details>
+        <summary>How does mobile mechanic pricing compare to a traditional shop?</summary>
+        <div>Our pricing is often more competitive than traditional brick-and-mortar shops because we have lower overhead costs. We provide transparent quotes before starting any work. You get the convenience of us coming to you without the premium price tag.</div>
+      </details>
+
+      <details>
+        <summary>What types of vehicles do you service?</summary>
+        <div>We service most makes and models of cars, light trucks, and SUVs. We currently do not service heavy-duty diesel trucks, RVs, or European specialty vehicles. If you have a question about your specific vehicle, please contact us.</div>
+      </details>
+
+      <details>
+        <summary>What if I don't know what's wrong with my car?</summary>
+        <div>That's not a problem. We offer diagnostic services. Our mechanic will come to your location, inspect the vehicle, and use diagnostic equipment to determine the issue. We charge a standard diagnostic fee, which is often waived or rolled into the cost of the repair if you choose us to fix the problem.</div>
+      </details>
+
+      <details>
+        <summary>How do I schedule an appointment?</summary>
+        <div>You can schedule an appointment by calling us at <a href="tel:+12085478375" class="text-blue-600 hover:underline">208-547-8375</a>, emailing us, or using the <a href="quote.html" class="text-blue-600 hover:underline">Quick Quote</a> form on our website.</div>
+      </details>
+
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="foot">
+      <p><a href="tel:+12085478375">📞 +1 208-547-8375</a></p>
+      <p><a href="mailto:swampdonkeymobilemechanics@gmail.com">✉ swampdonkeymobilemechanics@gmail.com</a></p>
+      <p>📍 <a href="https://www.google.com/maps/search/?api=1&query=235+S+4th+W+Rexburg%2C+ID+83440" target="_blank" rel="noopener">235 S 4th W Rexburg, ID 83440</a></p>
+      <!-- This paragraph will be populated by the script below -->
+      <p id="lastModified"></p>
+    </div>
+    <div class="media">
+      <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener" loading="lazy"><img src="images/fa.png" alt="facebook"></a>
+      <a id="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener" loading="lazy"><img src="images/insta.webp" alt="instagram"></a>
+      <a id="x" href="https://x.com/?lang=en" target="_blank" rel="noopener" loading="lazy"><img src="images/x.webp" alt="x"></a>
+    </div>
+  </footer>
+
+  <!-- FIX: Added JavaScript to populate the 'lastModified' paragraph -->
+  <script>
+    document.getElementById('lastModified').textContent = `Last Modified: ${document.lastModified}`;
+  </script>
+</body>
+</html>
