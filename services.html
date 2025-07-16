@@ -12,9 +12,41 @@
   <meta property="og:image" content="#">
   <meta property="og:url" content="https://github.com/masashi123456/Swamp-Donkey.git">
 
-<link rel="icon" href="images/swamp-favicon.png" type="image/png">
+  <link rel="icon" href="images/swamp-favicon.png" type="image/png">
   <!-- Consolidated site CSS -->
   <link rel="stylesheet" href="styles/consolidated.css">
+  
+  <!-- Added styles for service images -->
+  <style>
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      background-color: #f9f9f9; /* Light background for the card */
+      border-radius: 8px;
+      overflow: hidden; /* Ensures the image corners are rounded */
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .service-card:hover {
+        transform: translateY(-5px);
+    }
+    .service-image {
+      width: 100%;
+      height: 180px; /* A fixed height for uniformity */
+      object-fit: cover; /* Ensures the image covers the area without distortion */
+    }
+    .service-card-content {
+        padding: 1rem;
+    }
+    .service-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+    .service-card .description {
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
 </head>
 <body class="slide-in">
   <header>
@@ -40,36 +72,60 @@
         <br>
         <div class="service-grid">
           <div class="service-card">
-            <h3>Oil Changes</h3>
-            <p class="description">Replacing engine oil and filter.</p>
+            <img src="images/services/oilchange.jpg" alt="Oil Change service" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+              <h3>Oil Changes</h3>
+              <p class="description">Replacing engine oil and filter.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Tire Rotations</h3>
-            <p class="description">Rotating tires to ensure even wear.</p>
+            <img src="images/services/tire-rotation.jpg" alt="Tire Rotation service" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+              <h3>Tire Rotations</h3>
+              <p class="description">Rotating tires to ensure even wear.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Fluid Checks and Top-Offs</h3>
-            <p class="description">Checking and replenishing various fluids like coolant, brake fluid, and power steering fluid.</p>
+            <img src="images/services/fluid-check.jpg" alt="Fluid Checks service" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+              <h3>Fluid Checks and Top-Offs</h3>
+              <p class="description">Checking and replenishing various fluids like coolant, brake fluid, and power steering fluid.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Belt & Hose Inspections/Replacements</h3>
-            <p class="description">Checking for wear and tear on belts and hoses, and replacing them as needed.</p>
+            <img src="images/services/belt-and-hose-inspection.jpeg" alt="Belt & Hose Inspection service" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+              <h3>Belt & Hose Inspections/Replacements</h3>
+              <p class="description">Checking for wear and tear on belts and hoses, and replacing them as needed.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Filter Replacements</h3>
-            <p class="description">Replacing air filters, cabin air filters, and fuel filters.</p>
+            <img src="images/services/filter-replacement.jpg" alt="Filter Replacement service" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+              <h3>Filter Replacements</h3>
+              <p class="description">Replacing air filters, cabin air filters, and fuel filters.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Battery Testing & Replacement</h3>
-            <p class="description">Testing battery health and replacing it if necessary.</p>
+            <img src="images/services/testing-car-battery.jpg" alt="Battery Testing & Replacement service" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+              <h3>Battery Testing & Replacement</h3>
+              <p class="description">Testing battery health and replacing it if necessary.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Pre-Purchase Inspections</h3>
-            <p class="description">Thoroughly inspecting a used vehicle before a customer buys it.</p>
+            <img src="images/services/pre-purchase-inspections.avif" alt="Pre-Purchase Inspection service" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+              <h3>Pre-Purchase Inspections</h3>
+              <p class="description">Thoroughly inspecting a used vehicle before a customer buys it.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Seasonal Inspections</h3>
-            <p class="description">Checking a vehicle for readiness for specific seasons, like winterizing checks.</p>
+            <img src="images/services/seasonal-inspections.jpg" alt="Seasonal Inspection service" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+              <h3>Seasonal Inspections</h3>
+              <p class="description">Checking a vehicle for readiness for specific seasons, like winterizing checks.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -82,40 +138,67 @@
         <br>
         <div class="service-grid">
           <div class="service-card">
-            <h3>Brake Services</h3>
-            <p class="description">Inspecting brakes, replacing brake pads and rotors.</p>
+            <img src="images/services/brake-service.jpg" alt="Brake Services" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>Brake Services</h3>
+                <p class="description">Inspecting brakes, replacing brake pads and rotors.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Diagnostic Scans</h3>
-            <p class="description">Using diagnostic tools to read trouble codes and pinpoint issues.</p>
+            <img src="images/services/diagnostic-scans.jpg" alt="Diagnostic Scans" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>Diagnostic Scans</h3>
+                <p class="description">Using diagnostic tools to read trouble codes and pinpoint issues.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Minor Engine Repairs</h3>
-            <p class="description">Addressing issues like misfires, sensor replacements, and spark plug replacement.</p>
+            <img src="images/services/minor-engine-repair.jpeg" alt="Minor Engine Repairs" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>Minor Engine Repairs</h3>
+                <p class="description">Addressing issues like misfires, sensor replacements, and spark plug replacement.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Starting & Charging System Repairs</h3>
-            <p class="description">Diagnosing and repairing issues with alternators, starters, and wiring.</p>
+            <img src="images/services/starting-car-repair.jpeg" alt="Starting & Charging System Repairs" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>Starting & Charging System Repairs</h3>
+                <p class="description">Diagnosing and repairing issues with alternators, starters, and wiring.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Cooling System Repairs</h3>
-            <p class="description">Diagnosing and repairing issues like radiator leaks and thermostat replacement.</p>
+            <img src="images/services/cooling-system-repair.jpg" alt="Cooling System Repairs" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>Cooling System Repairs</h3>
+                <p class="description">Diagnosing and repairing issues like radiator leaks and thermostat replacement.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Suspension & Steering Repairs</h3>
-            <p class="description">Replacing shock absorbers, struts, control arms, and other components.</p>
+            <img src="images/services/steering-and-suspension-repairs.jpg" alt="Suspension & Steering Repairs" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>Suspension & Steering Repairs</h3>
+                <p class="description">Replacing shock absorbers, struts, control arms, and other components.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Exhaust System Repairs</h3>
-            <p class="description">Repairing or replacing mufflers and pipes.</p>
+            <img src="images/services/exhaust-system-repairs.jpeg" alt="Exhaust System Repairs" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>Exhaust System Repairs</h3>
+                <p class="description">Repairing or replacing mufflers and pipes.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Electrical System Repairs</h3>
-            <p class="description">Diagnosing and repairing issues with wiring, fuses, lights, and windows.</p>
+            <img src="images/services/electrical-system-repair.jpg" alt="Electrical System Repairs" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>Electrical System Repairs</h3>
+                <p class="description">Diagnosing and repairing issues with wiring, fuses, lights, and windows.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Fuel System Repairs</h3>
-            <p class="description">Replacing fuel pumps, fuel filters, and fuel injectors.</p>
+            <img src="images/services/Fuel-System-Repair.jpg" alt="Fuel System Repairs" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>Fuel System Repairs</h3>
+                <p class="description">Replacing fuel pumps, fuel filters, and fuel injectors.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -128,24 +211,39 @@
         <br>
         <div class="service-grid">
           <div class="service-card">
-            <h3>Jump Starts</h3>
-            <p class="description">Providing battery boosts for dead batteries.</p>
+            <img src="images/services/jump-start.jpeg" alt="Jump Starts" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>Jump Starts</h3>
+                <p class="description">Providing battery boosts for dead batteries.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Flat Tire Repair/Replacement</h3>
-            <p class="description">Patching tires or installing spare tires.</p>
+            <img src="images/services/flat-tire-repair.jpg" alt="Flat Tire Repair/Replacement" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>Flat Tire Repair/Replacement</h3>
+                <p class="description">Patching tires or installing spare tires.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Fuel Delivery</h3>
-            <p class="description">Bringing fuel to a stranded vehicle.</p>
+            <img src="images/services/fuel-delivery-repair.jpeg" alt="Fuel Delivery" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>Fuel Delivery</h3>
+                <p class="description">Bringing fuel to a stranded vehicle.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>Lockout Services</h3>
-            <p class="description">Assisting with unlocking vehicles.</p>
+            <img src="images/services/Lockout-services.jpg" alt="Lockout Services" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>Lockout Services</h3>
+                <p class="description">Assisting with unlocking vehicles.</p>
+            </div>
           </div>
           <div class="service-card">
-            <h3>On-site Minor Repairs</h3>
-            <p class="description">Performing quick fixes to get a vehicle running after a breakdown.</p>
+            <img src="images/services/onsite-minor-repairs.jpeg" alt="On-site Minor Repairs" class="service-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
+            <div class="service-card-content">
+                <h3>On-site Minor Repairs</h3>
+                <p class="description">Performing quick fixes to get a vehicle running after a breakdown.</p>
+            </div>
           </div>
         </div>
         <br>
@@ -168,4 +266,3 @@
     </footer>
 </body>
 </html>
-```
