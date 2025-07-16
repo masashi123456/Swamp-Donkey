@@ -12,6 +12,7 @@
     <meta property="og:url" content="https://github.com/masashi123456/Swamp-Donkey.git">
 
     <link rel="icon" href="images/swamp-favicon.png">
+    <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/consolidated.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -48,11 +49,18 @@
                             <input type="radio" id="star2" name="rating" value="2"/><label for="star2"><i class="fas fa-star"></i></label>
                             <input type="radio" id="star1" name="rating" value="1"/><label for="star1"><i class="fas fa-star"></i></label>
                         </div>
+
+
                     </div>
+                    <div>
+                    
+
                     <div>
                         <label for="reviewMessage" class="block font-medium">Review</label>
                         <textarea id="reviewMessage" name="reviewMessage" rows="4" required
                                   class="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:ring focus:border-accent"></textarea>
+                                  <label for="reviewImage" class="block font-medium">Upload an Image (optional)</label>
+                        <input type="file" id="reviewImage" name="reviewImage" accept="image/*"class="mt-1 w-full">
                     </div>
                     <div class="text-center">
                         <button type="submit" class="submit-button font-bold py-3 px-8 rounded-lg shadow-lg">
@@ -87,12 +95,12 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
         const firebaseConfig = {
         apiKey: "AIzaSyDE4YNMlgZm9Uax_-zXLk3dHlYOWpftmw4",
         authDomain: "swamp-donkey-website-68780.firebaseapp.com",
         projectId: "swamp-donkey-website-68780",
-        storageBucket: "swamp-donkey-website-68780.firebasestorage.app",
+        storageBucket: "swamp-donkey-website-68780.firebasestorage.appspot.com",
         messagingSenderId: "642498767447",
         appId: "1:642498767447:web:fe862e8ea7d93a0c9d9112"
         };
@@ -102,10 +110,12 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const reviewsRef = collection(db, "reviews");
+        const storage = getStorage(app);
 
         const reviewForm = document.getElementById('reviewForm');
         const confirmationMessage = document.getElementById('confirmation-message');
         const reviewsContainer = document.getElementById('reviewsContainer');
+        const imageFile = document.getElementById('reviewImage').files[0];
 
         reviewForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -118,16 +128,29 @@
                 return;
             }
 
-            await addDoc(reviewsRef, { name, rating: Number(rating), message, createdAt: new Date() });
+            const imageFile = document.getElementById('reviewImage').files[0];
+            let imageUrl = "";
+
+            if (imageFile) {
+                const storageRef = ref(storage, `review-images/${Date.now()}-${imageFile.name}`);
+                const snapshot = await uploadBytes(storageRef, imageFile);
+                imageUrl = await getDownloadURL(snapshot.ref);
+            }
+
+            await addDoc(reviewsRef, { name, rating: Number(rating), message, imageUrl, createdAt: new Date() });
             reviewForm.reset();
             confirmationMessage.style.opacity = '1';
             setTimeout(() => confirmationMessage.style.opacity = '0', 4000);
+
+            
+
+           
         });
 
         onSnapshot(query(reviewsRef, orderBy("createdAt", "desc")), (snapshot) => {
             reviewsContainer.innerHTML = '';
             snapshot.forEach((doc) => {
-                const { name, rating, message } = doc.data();
+                const { name, rating, message, imageUrl } = doc.data();
                 const reviewHTML = `<div class=\"review-card p-6\">
                     <div class=\"flex items-center mb-2\">
                         <p class=\"font-bold\">${name}</p>
@@ -136,6 +159,7 @@
                         </div>
                     </div>
                     <p>${message}</p>
+                    ${imageUrl ? `<img src="${imageUrl}" alt="Review Image" class="max-w-full rounded shadow-md mt-2"/>` : ''}
                 </div>`;
                 reviewsContainer.insertAdjacentHTML('beforeend', reviewHTML);
             });
