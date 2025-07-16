@@ -1,0 +1,3 @@
+@media (max-width: 320px) {
+    .about-section { display: flex; gap: 2rem; background-color: #fff; padding: 0.6rem; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); margin:2rem auto; width:100%}
+}
