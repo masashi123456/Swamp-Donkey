@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Appointment - SWAMP DONKEY</title>
+    <meta name="author" content="David Lunceford, Masashi Ota, Ryan Griffin">
+    <meta name="description" content="Schedule an appointment with Swamp Donkey Mobile Mechanics.">
+    <meta property="og:title" content="Swamp Donkey Scheduling">
+    <meta property="og:type" content="Web Page">
+    <meta property="og:image" content="#">
+    <meta property="og:url" content="https://github.com/masashi123456/Swamp-Donkey.git">
+
+    <link rel="icon" href="images/swamp-favicon.png" type="image/png">
+    <link rel="stylesheet" href="styles/consolidated.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/small.css">
+    
+    <!-- Tailwind CSS for scheduling component -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Slide-in from top animation */
+        @keyframes slideInFromTop {
+            from { opacity: 0; transform: translateY(-100%); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        body {
+            animation: slideInFromTop 0.8s ease-out;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* --- Footer Styles --- */
+        footer {
+            background-color: #222;
+            color: #ccc;
+            padding: 40px 5%;
+            margin-top: 50px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #444;
+        }
+        .contact-info, .social-media {
+            flex: 1;
+            min-width: 250px;
+        }
+        .contact-info h4, .social-media h4 {
+            font-size: 1.2em;
+            color: #fff;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .contact-info h4::after, .social-media h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #00aaff;
+        }
+        .contact-info ul { list-style: none; padding: 0; }
+        .contact-info ul li { margin-bottom: 15px; }
+        .contact-info ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        .contact-info ul li a:hover { color: #cc6914; }
+        .contact-info ul li i {
+            color: #cc6914;
+            font-size: 1.1em;
+            margin-right: 15px;
+            width: 20px;
+        }
+        .social-icons a {
+            color: #ccc;
+            font-size: 1.8em;
+            margin-right: 20px;
+            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-block;
+        }
+        .social-icons a:hover {
+            color: #fff;
+            transform: scale(1.2);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+        .footer-bottom p { margin: 5px 0; }
+        @media (max-width: 768px) {
+            .footer-content { flex-direction: column; align-items: center; text-align: center; }
+            .contact-info h4::after, .social-media h4::after { left: 50%; transform: translateX(-50%); }
+            .contact-info ul li a { justify-content: center; }
+            .social-media { margin-top: 20px; }
+            .social-icons a { margin: 0 15px; }
+        }
+
+        /* --- Scheduler Specific Styles --- */
+        .scheduler-body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+        .calendar-day { transition: all 0.2s ease-in-out; }
+        .calendar-day.selected { background-color: #3b82f6; color: white; transform: scale(1.05); }
+        .time-slot { transition: all 0.2s ease-in-out; }
+        .time-slot:not(.disabled):hover { background-color: #3b82f6; color: white; cursor: pointer; }
+        .time-slot.disabled { background-color: #e5e7eb; color: #9ca3af; cursor: not-allowed; }
+        .modal { transition: opacity 0.25s ease; }
+        .modal-active { overflow-x: hidden; overflow-y: auto; }
+        #notificationToast.show { transform: translateY(0); opacity: 1; }
+        #auth-container.hidden, #scheduler-container.hidden { display: none; }
+    </style>
+</head>
+<body class="scheduler-body">
+    <header>
+        <a href="index.html">
+            <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
+        </a>
+    </header>
+
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="quote.html">Quick Quote</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="review.html">Reviews</a>
+        <a href="faq.html">FAQs</a>
+    </nav>
+
+    <main>
+        <div id="app" class="container mx-auto p-4 md:p-8 max-w-6xl">
+            <!-- Auth Container -->
+            <div id="auth-container" class="text-center">
+                 <div class="bg-white p-8 rounded-2xl shadow-lg max-w-md mx-auto">
+                    <h1 class="text-3xl font-bold text-gray-900">Welcome!</h1>
+                    <p class="mt-2 text-lg text-gray-600 mb-6">Please sign in to schedule an appointment.</p>
+                    <button id="signInBtn" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105 flex items-center justify-center mx-auto">
+                        <i class="fa-brands fa-google mr-3"></i>
+                        Sign in with Google
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scheduler Container -->
+            <div id="scheduler-container" class="hidden">
+                 <header class="mb-8 text-center">
+                    <div id="userInfo" class="mb-4 text-sm text-gray-700 bg-white p-3 rounded-lg shadow-sm inline-flex items-center gap-3">
+                        <!-- User info will be populated here -->
+                    </div>
+                    <h1 class="text-4xl font-bold text-gray-900">Schedule an Appointment</h1>
+                    <p class="mt-2 text-lg text-gray-600">Select a date, duration, and time that works for you.</p>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Left Side: Calendar and Time Slots -->
+                    <div class="md:col-span-2 bg-white p-6 rounded-2xl shadow-lg">
+                        <!-- Calendar -->
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <button id="prevMonth" class="p-2 rounded-full hover:bg-gray-100 transition">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <h2 id="currentMonth" class="text-xl font-semibold"></h2>
+                                <button id="nextMonth" class="p-2 rounded-full hover:bg-gray-100 transition">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-7 text-center font-medium text-gray-500 pb-2 border-b">
+                                <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                            </div>
+                            <div id="calendarGrid" class="calendar-grid mt-4"></div>
+                        </div>
+
+                        <!-- Duration Selector -->
+                        <div class="mt-8">
+                            <label for="durationSelect" class="block text-lg font-semibold mb-2">Select Appointment Duration</label>
+                            <select id="durationSelect" class="w-full p-2 border rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="30">30 minutes</option>
+                                <option value="60" selected>60 minutes</option>
+                                <option value="90">90 minutes</option>
+                            </select>
+                        </div>
+
+                        <!-- Time Slots -->
+                        <div id="timeSlotsContainer" class="mt-8">
+                            <h3 class="text-lg font-semibold mb-2">Available Start Times for <span id="selectedDateText" class="text-blue-600"></span></h3>
+                            <div id="timeSlotsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+                            <div id="timeSlotsLoading" class="text-center p-8 text-gray-500 hidden"><i class="fas fa-spinner fa-spin fa-2x"></i><p class="mt-2">Loading slots...</p></div>
+                            <div id="noSlotsMessage" class="text-center p-8 text-gray-500 hidden"><i class="fas fa-calendar-times fa-2x"></i><p class="mt-2">No available slots for this duration.</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: My Appointments -->
+                    <div class="bg-white p-6 rounded-2xl shadow-lg">
+                        <h2 class="text-2xl font-bold mb-4 border-b pb-2">My Appointments</h2>
+                        <div id="appointmentsList" class="space-y-4"></div>
+                        <div id="appointmentsLoading" class="text-center p-8 text-gray-500"><i class="fas fa-spinner fa-spin fa-2x"></i><p class="mt-2">Loading appointments...</p></div>
+                        <div id="noAppointmentsMessage" class="text-center p-8 text-gray-500 hidden"><i class="fas fa-calendar-check fa-2x"></i><p class="mt-2">You have no upcoming appointments.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="fixed bottom-0 left-0 right-0 bg-gray-900 p-3 flex justify-around items-center shadow-lg md:hidden z-20">
+        <a href="tel:+12085478375" class="bg-yellow-500 text-gray-900 font-bold py-2 px-6 rounded-lg text-center text-base">📞 Call Ryan</a>
+        <a href="quote.html" class="bg-gray-700 text-white font-bold py-2 px-6 rounded-lg text-center text-base">🛠 Book Service</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info"><h4>Contact Us</h4><ul><li><a href="tel:+12085478375"><i class="fa-solid fa-phone"></i> +1 208-547-8375</a></li><li><a href="mailto:swampdonkeymobilemechanics@gmail.com"><i class="fa-solid fa-envelope"></i> swampdonkeymobilemechanics@gmail.com</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=235+S+4th+W+Rexburg+ID+83440" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> 235 S 4th W Rexburg, ID 83440</a></li></ul></div>
+            <div class="social-media"><h4>Follow Us</h4><div class="social-icons"><a href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a><a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="https://x.com/?lang=en" target="_blank" rel="noopener" aria-label="X (formerly Twitter)"><i class="fa-brands fa-square-x-twitter"></i></a></div></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; <span id="currentYear"></span> Swamp Donkey Mobile Mechanics. All Rights Reserved.</p><p>Last Modified: <span id="lastModified"></span></p></div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="bookingModal" class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center hidden z-50"><div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div><div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg z-50 overflow-y-auto"><div class="modal-content py-4 text-left px-6"><div class="flex justify-between items-center pb-3"><p class="text-2xl font-bold">Confirm Your Booking</p><button id="closeModal" class="modal-close cursor-pointer z-50"><i class="fas fa-times"></i></button></div><p class="mb-4">You are booking the following time slot:</p><div class="bg-blue-100 text-blue-800 p-3 rounded-lg mb-4"><strong>Date:</strong> <span id="modalDate"></span><br><strong>Time:</strong> <span id="modalTime"></span><br><strong>Duration:</strong> <span id="modalDuration"></span></div><form id="bookingForm"><div class="mb-4"><label for="name" class="block text-gray-700 text-sm font-bold mb-2">Your Name:</label><input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" readonly></div><div class="mb-4"><label for="email" class="block text-gray-700 text-sm font-bold mb-2">Your Email:</label><input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" readonly></div><hr class="my-4"><div class="mb-4"><label for="streetAddress" class="block text-gray-700 text-sm font-bold mb-2">Street Address for Service:</label><input type="text" id="streetAddress" name="streetAddress" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="mb-4"><label for="city" class="block text-gray-700 text-sm font-bold mb-2">City:</label><input type="text" id="city" name="city" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></div><div class="mb-4"><label for="zip" class="block text-gray-700 text-sm font-bold mb-2">ZIP Code:</label><input type="text" id="zip" name="zip" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></div></div><div class="flex justify-end pt-2"><button type="button" id="cancelBooking" class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Cancel</button><button type="submit" id="confirmBookingBtn" class="px-4 bg-blue-500 p-3 rounded-lg text-white hover:bg-blue-600">Confirm Booking</button></div></form></div></div></div>
+    <div id="notificationToast" class="fixed bottom-5 right-5 bg-gray-800 text-white py-3 px-5 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300"><p id="notificationMessage"></p></div>
+    <div id="confirmationModal" class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center hidden z-50"><div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div><div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg z-50 overflow-y-auto"><div class="modal-content py-4 text-left px-6"><div class="flex justify-between items-center pb-3"><p class="text-2xl font-bold">Please Confirm</p></div><p id="confirmationMessage" class="mb-4">Are you sure?</p><div class="flex justify-end pt-2"><button id="confirmCancelBtn" class="px-4 bg-transparent p-3 rounded-lg text-gray-600 hover:bg-gray-100 mr-2">Cancel</button><button id="confirmOkBtn" class="px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-600">Confirm</button></div></div></div></div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, doc, onSnapshot, query, where, writeBatch, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDE4YNMlgZm9Uax_-zXLk3dHlYOWpftmw4",
+            authDomain: "swamp-donkey-website-68780.firebaseapp.com",
+            projectId: "swamp-donkey-website-68780",
+            storageBucket: "swamp-donkey-website-68780.appspot.com",
+            messagingSenderId: "642498767447",
+            appId: "1:642498767447:web:fe862e8ea7d93a0c9d9112"
+        };
+
+        let app, auth, db, userId, currentUser;
+        try {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+        } catch (e) {
+            console.error("Firebase initialization failed.", e);
+            document.body.innerHTML = `<div class="bg-red-100 border-red-400 text-red-700 px-4 py-3 rounded relative m-4" role="alert"><strong class="font-bold">Fatal Error!</strong><span class="block sm:inline"> Could not initialize Firebase.</span></div>`;
+        }
+        
+        const SLOT_DURATION_MINUTES = 30;
+
+        const authContainer = document.getElementById('auth-container');
+        const schedulerContainer = document.getElementById('scheduler-container');
+        const signInBtn = document.getElementById('signInBtn');
+        const userInfoEl = document.getElementById('userInfo');
+        const calendarGrid = document.getElementById('calendarGrid');
+        const currentMonthEl = document.getElementById('currentMonth');
+        const prevMonthBtn = document.getElementById('prevMonth');
+        const nextMonthBtn = document.getElementById('nextMonth');
+        const durationSelect = document.getElementById('durationSelect');
+        const selectedDateText = document.getElementById('selectedDateText');
+        const timeSlotsGrid = document.getElementById('timeSlotsGrid');
+        const timeSlotsLoading = document.getElementById('timeSlotsLoading');
+        const noSlotsMessage = document.getElementById('noSlotsMessage');
+        const appointmentsList = document.getElementById('appointmentsList');
+        const appointmentsLoading = document.getElementById('appointmentsLoading');
+        const noAppointmentsMessage = document.getElementById('noAppointmentsMessage');
+        
+        const bookingModal = document.getElementById('bookingModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const cancelBookingBtn = document.getElementById('cancelBooking');
+        const bookingForm = document.getElementById('bookingForm');
+        const modalDate = document.getElementById('modalDate');
+        const modalTime = document.getElementById('modalTime');
+        const modalDuration = document.getElementById('modalDuration');
+        const confirmBookingBtn = document.getElementById('confirmBookingBtn');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        
+        const notificationToast = document.getElementById('notificationToast');
+        const notificationMessage = document.getElementById('notificationMessage');
+        const confirmationModal = document.getElementById('confirmationModal');
+        const confirmationMessage = document.getElementById('confirmationMessage');
+        const confirmOkBtn = document.getElementById('confirmOkBtn');
+        const confirmCancelBtn = document.getElementById('confirmCancelBtn');
+
+        let selectedDate = new Date();
+        let currentDate = new Date();
+        let selectedTimeSlot = null;
+        let dailySlotsCache = [];
+        let appointmentsUnsubscribe = null;
+        let slotsUnsubscribe = null;
+
+        // --- AUTHENTICATION ---
+        const provider = new GoogleAuthProvider();
+
+        signInBtn.addEventListener('click', () => {
+            signInWithPopup(auth, provider).catch(error => {
+                console.error("Google Sign-In failed:", error);
+                showNotification(`Google Sign-In Error: ${error.message}`, true);
+            });
+        });
+
+        function handleSignOut() {
+            signOut(auth).catch(error => {
+                console.error("Sign-out failed:", error);
+                showNotification(`Sign-out Error: ${error.message}`, true);
+            });
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                userId = user.uid;
+                authContainer.classList.add('hidden');
+                schedulerContainer.classList.remove('hidden');
+                
+                userInfoEl.innerHTML = `
+                    <img src="${user.photoURL}" alt="User Photo" class="w-8 h-8 rounded-full">
+                    <span>Welcome, ${user.displayName}!</span>
+                    <button id="signOutBtn" class="ml-4 text-sm text-blue-600 hover:underline">Sign Out</button>
+                `;
+                document.getElementById('signOutBtn').addEventListener('click', handleSignOut);
+
+                initializeAppState();
+            } else {
+                currentUser = null;
+                userId = null;
+                authContainer.classList.remove('hidden');
+                schedulerContainer.classList.add('hidden');
+                if (appointmentsUnsubscribe) appointmentsUnsubscribe();
+                if (slotsUnsubscribe) slotsUnsubscribe();
+            }
+        });
+
+        // --- INITIALIZATION ---
+        function initializeAppState() {
+            if (!userId || !db) return;
+            renderCalendar();
+            listenForTimeSlots(selectedDate);
+            listenForAppointments();
+            durationSelect.addEventListener('change', () => displayAvailableStartTimes(dailySlotsCache));
+        }
+
+        // --- CALENDAR LOGIC ---
+        function renderCalendar() {
+            calendarGrid.innerHTML = '';
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            currentMonthEl.textContent = `${currentDate.toLocaleString('default', { month: 'long' })} ${year}`;
+            const firstDayOfMonth = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                calendarGrid.innerHTML += '<div></div>';
+            }
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayEl = document.createElement('div');
+                dayEl.textContent = day;
+                dayEl.className = 'calendar-day text-center p-2 rounded-full cursor-pointer hover:bg-blue-100';
+                const today = new Date();
+                const dayDate = new Date(year, month, day);
+                if (dayDate.setHours(0,0,0,0) < today.setHours(0,0,0,0)) {
+                    dayEl.classList.add('text-gray-400', 'cursor-not-allowed');
+                } else {
+                     dayEl.addEventListener('click', () => {
+                        selectedDate = dayDate;
+                        document.querySelectorAll('.calendar-day.selected').forEach(el => el.classList.remove('selected'));
+                        dayEl.classList.add('selected');
+                        listenForTimeSlots(selectedDate);
+                    });
+                }
+                if (day === selectedDate.getDate() && month === selectedDate.getMonth() && year === selectedDate.getFullYear()) {
+                    dayEl.classList.add('selected');
+                }
+                calendarGrid.appendChild(dayEl);
+            }
+        }
+        prevMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+        nextMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+        // --- TIME SLOT LOGIC ---
+        function listenForTimeSlots(date) {
+            if (slotsUnsubscribe) slotsUnsubscribe();
+            selectedDateText.textContent = date.toLocaleDateString('default', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            timeSlotsGrid.innerHTML = '';
+            timeSlotsLoading.classList.remove('hidden');
+            noSlotsMessage.classList.add('hidden');
+            const dateString = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+            const availabilityRef = collection(db, `availability/${dateString}/slots`);
+            slotsUnsubscribe = onSnapshot(query(availabilityRef), (snapshot) => {
+                timeSlotsLoading.classList.add('hidden');
+                if (snapshot.empty) {
+                    generateDefaultSlots(dateString);
+                    return;
+                }
+                dailySlotsCache = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })).sort((a, b) => a.time.localeCompare(b.time));
+                displayAvailableStartTimes(dailySlotsCache);
+            }, (error) => {
+                console.error("Error fetching time slots: ", error);
+                timeSlotsLoading.classList.add('hidden');
+                noSlotsMessage.classList.remove('hidden');
+                noSlotsMessage.textContent = "Error loading slots.";
+            });
+        }
+
+        function displayAvailableStartTimes(allSlots) {
+            timeSlotsGrid.innerHTML = '';
+            const selectedDuration = parseInt(durationSelect.value, 10);
+            const slotsNeeded = selectedDuration / SLOT_DURATION_MINUTES;
+            let availableStartTimesFound = false;
+            for (let i = 0; i <= allSlots.length - slotsNeeded; i++) {
+                const potentialStartTime = allSlots[i].time;
+                const slice = allSlots.slice(i, i + slotsNeeded);
+                const isSliceAvailable = slice.every(slot => !slot.isBooked);
+                if (isSliceAvailable) {
+                    availableStartTimesFound = true;
+                    const slotEl = document.createElement('div');
+                    slotEl.textContent = formatTime(potentialStartTime);
+                    slotEl.className = 'time-slot border rounded-lg p-3 text-center font-medium';
+                    slotEl.addEventListener('click', () => {
+                        selectedTimeSlot = { 
+                            date: getSelectedDateString(), 
+                            time: potentialStartTime, 
+                            duration: selectedDuration
+                        };
+                        openBookingModal();
+                    });
+                    timeSlotsGrid.appendChild(slotEl);
+                }
+            }
+            noSlotsMessage.classList.toggle('hidden', availableStartTimesFound);
+        }
+
+        async function generateDefaultSlots(dateString) {
+            console.log(`Generating default slots for ${dateString}...`);
+            const availabilityRef = collection(db, `availability/${dateString}/slots`);
+            const defaultTimes = [];
+            for (let hour = 8; hour < 18; hour++) {
+                defaultTimes.push(`${String(hour).padStart(2, '0')}:00`);
+                defaultTimes.push(`${String(hour).padStart(2, '0')}:30`);
+            }
+            const batch = writeBatch(db);
+            defaultTimes.forEach(time => {
+                const slotRef = doc(availabilityRef);
+                batch.set(slotRef, { time: time, isBooked: false });
+            });
+            await batch.commit();
+        }
+
+        // --- APPOINTMENT LOGIC ---
+        function listenForAppointments() {
+            if (appointmentsUnsubscribe) appointmentsUnsubscribe();
+            const q = query(collection(db, `appointments`), where("userId", "==", userId));
+            appointmentsUnsubscribe = onSnapshot(q, (snapshot) => {
+                appointmentsLoading.classList.add('hidden');
+                appointmentsList.innerHTML = '';
+                if (snapshot.empty) {
+                    noAppointmentsMessage.classList.remove('hidden');
+                    return;
+                }
+                noAppointmentsMessage.classList.add('hidden');
+                const appointments = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                appointments.sort((a,b) => new Date(a.date + 'T' + a.time) - new Date(b.date + 'T' + b.time));
+                appointments.forEach(appt => {
+                    const apptEl = document.createElement('div');
+                    apptEl.className = 'bg-gray-100 p-4 rounded-lg';
+                    
+                    let addressHtml = '';
+                    if (appt.address) {
+                        addressHtml = `
+                        <div class="mt-2 text-sm text-gray-600 bg-gray-200 p-2 rounded">
+                            <p class="font-semibold">Service Address:</p>
+                            <p>${appt.address.street}, ${appt.address.city}, ${appt.address.zip}</p>
+                        </div>`;
+                    }
+
+                    apptEl.innerHTML = `
+                        <p class="font-bold text-blue-700">${formatDate(appt.date)} at ${formatTime(appt.time)}</p>
+                        <p class="text-sm text-gray-600">Duration: ${appt.duration} minutes</p>
+                        <p class="text-sm text-gray-600">Booked by: ${appt.name}</p>
+                        ${addressHtml}
+                        <button data-id="${appt.id}" data-date="${appt.date}" data-time="${appt.time}" data-duration="${appt.duration}" class="cancel-btn mt-2 text-xs text-red-500 hover:text-red-700 font-semibold">Cancel Appointment</button>
+                    `;
+                    appointmentsList.appendChild(apptEl);
+                });
+            }, (error) => {
+                console.error("Error fetching appointments:", error);
+                appointmentsLoading.classList.add('hidden');
+                noAppointmentsMessage.textContent = "Error loading appointments.";
+                noAppointmentsMessage.classList.remove('hidden');
+            });
+        }
+
+        bookingForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            confirmBookingBtn.disabled = true;
+            confirmBookingBtn.textContent = 'Booking...';
+
+            const streetAddress = document.getElementById('streetAddress').value;
+            const city = document.getElementById('city').value;
+            const zip = document.getElementById('zip').value;
+
+            try {
+                const batch = writeBatch(db);
+                const slotsToBook = getSlotsForAppointment(selectedTimeSlot.time, selectedTimeSlot.duration);
+                slotsToBook.forEach(slot => {
+                    const slotRef = doc(db, `availability/${selectedTimeSlot.date}/slots`, slot.id);
+                    batch.update(slotRef, { isBooked: true });
+                });
+                const appointmentRef = doc(collection(db, `appointments`));
+                batch.set(appointmentRef, {
+                    userId: currentUser.uid, 
+                    name: currentUser.displayName, 
+                    email: currentUser.email,
+                    date: selectedTimeSlot.date, 
+                    time: selectedTimeSlot.time,
+                    duration: selectedTimeSlot.duration,
+                    address: {
+                        street: streetAddress,
+                        city: city,
+                        zip: zip
+                    }
+                });
+                await batch.commit();
+                closeBookingModal();
+                showNotification('Appointment booked successfully!');
+            } catch (error) {
+                console.error("Error booking appointment: ", error);
+                showNotification('Failed to book. The slot may have been taken.', true);
+            } finally {
+                confirmBookingBtn.disabled = false;
+                confirmBookingBtn.textContent = 'Confirm Booking';
+            }
+        });
+
+        appointmentsList.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('cancel-btn')) {
+                const { id, date, time, duration } = e.target.dataset;
+                const confirmed = await showConfirmation('Are you sure you want to cancel this appointment?');
+                if (confirmed) {
+                    try {
+                        const batch = writeBatch(db);
+                        const appointmentRef = doc(db, `appointments`, id);
+                        batch.delete(appointmentRef);
+                        const slotsToFree = await getSlotsForAppointmentCancellation(date, time, parseInt(duration, 10));
+                        slotsToFree.forEach(slot => {
+                           const slotRef = doc(db, `availability/${date}/slots`, slot.id);
+                           batch.update(slotRef, { isBooked: false });
+                        });
+                        await batch.commit();
+                        showNotification('Appointment cancelled successfully.');
+                    } catch (error) {
+                        console.error("Error cancelling appointment: ", error);
+                        showNotification('Failed to cancel appointment.', true);
+                    }
+                }
+            }
+        });
+
+        // --- MODAL & NOTIFICATION CONTROLS ---
+        function openBookingModal() {
+            if (!currentUser) {
+                showNotification("Please sign in to book an appointment.", true);
+                return;
+            }
+            modalDate.textContent = formatDate(selectedTimeSlot.date);
+            modalTime.textContent = formatTime(selectedTimeSlot.time);
+            modalDuration.textContent = `${selectedTimeSlot.duration} minutes`;
+            nameInput.value = currentUser.displayName;
+            emailInput.value = currentUser.email;
+            bookingModal.classList.remove('hidden');
+            document.body.classList.add('modal-active');
+        }
+        function closeBookingModal() {
+            bookingModal.classList.add('hidden');
+            document.body.classList.remove('modal-active');
+            bookingForm.reset();
+        }
+        closeModalBtn.addEventListener('click', closeBookingModal);
+        cancelBookingBtn.addEventListener('click', closeBookingModal);
+        function showNotification(message, isError = false) {
+            notificationMessage.textContent = message;
+            notificationToast.className = `fixed bottom-5 right-5 text-white py-3 px-5 rounded-lg shadow-lg transform transition-all duration-300 ${isError ? 'bg-red-500' : 'bg-gray-800'} show`;
+            setTimeout(() => {
+                notificationToast.classList.remove('show');
+            }, 3000);
+        }
+        function showConfirmation(message) {
+            return new Promise((resolve) => {
+                confirmationMessage.textContent = message;
+                confirmationModal.classList.remove('hidden');
+                document.body.classList.add('modal-active');
+                confirmOkBtn.onclick = () => {
+                    confirmationModal.classList.add('hidden');
+                    document.body.classList.remove('modal-active');
+                    resolve(true);
+                };
+                confirmCancelBtn.onclick = () => {
+                    confirmationModal.classList.add('hidden');
+                    document.body.classList.remove('modal-active');
+                    resolve(false);
+                };
+            });
+        }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !bookingModal.classList.contains('hidden')) {
+                closeBookingModal();
+            }
+        });
+
+        // --- UTILITY FUNCTIONS ---
+        function getSelectedDateString() {
+            return `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
+        }
+        function getSlotsForAppointment(startTime, duration) {
+            const startIndex = dailySlotsCache.findIndex(slot => slot.time === startTime);
+            const slotsNeeded = duration / SLOT_DURATION_MINUTES;
+            return dailySlotsCache.slice(startIndex, startIndex + slotsNeeded);
+        }
+        async function getSlotsForAppointmentCancellation(date, startTime, duration) {
+            const slotsNeeded = duration / SLOT_DURATION_MINUTES;
+            const slotsToFree = [];
+            let currentTime = startTime;
+            const availabilityRef = collection(db, `availability/${date}/slots`);
+            for(let i = 0; i < slotsNeeded; i++) {
+                const q = query(availabilityRef, where("time", "==", currentTime));
+                const querySnapshot = await getDocs(q);
+                if (!querySnapshot.empty) {
+                    slotsToFree.push({id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data()});
+                }
+                const [hour, minute] = currentTime.split(':').map(Number);
+                const d = new Date();
+                d.setHours(hour, minute + SLOT_DURATION_MINUTES, 0, 0);
+                currentTime = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+            }
+            return slotsToFree;
+        }
+        function formatTime(time) {
+            const [hour, minute] = time.split(':');
+            const d = new Date(0, 0, 0, hour, minute);
+            return d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+        }
+        function formatDate(dateString) {
+            const [year, month, day] = dateString.split('-');
+            const d = new Date(year, month - 1, day);
+            return d.toLocaleDateString([], { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+    </script>
+    <script>
+        // --- FOOTER SCRIPT ---
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        document.getElementById('lastModified').textContent = document.lastModified;
+    </script>
+</body>
+</html>
