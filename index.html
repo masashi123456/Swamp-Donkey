@@ -35,6 +35,137 @@
       position: relative;
       z-index: 10;
     }
+  /* Import a clean font from Google Fonts (add to the top of your CSS file) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* --- General Footer Styles --- */
+footer {
+  background-color: #222; /* A dark charcoal background */
+  color: #ccc; /* A light grey for text */
+  font-family: 'Montserrat', sans-serif;
+  padding: 40px 5%; /* Add padding top/bottom and left/right */
+  margin-top: 50px; /* Add space between footer and content above */
+}
+
+/* --- Layout using Flexbox --- */
+.footer-content {
+  display: flex;
+  justify-content: space-between; /* Pushes contact and social to opposite ends */
+  align-items: flex-start; /* Aligns items to the top */
+  flex-wrap: wrap; /* Allows items to stack on smaller screens */
+  gap: 20px; /* Adds space between the columns when they wrap */
+  padding-bottom: 30px;
+  border-bottom: 1px solid #444; /* A subtle separator line */
+}
+
+.contact-info, .social-media {
+  flex: 1; /* Allows them to grow and shrink */
+  min-width: 250px; /* Prevents them from getting too squished */
+}
+
+/* --- Section Headers --- */
+.contact-info h4, .social-media h4 {
+  font-size: 1.2em;
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+/* Underline effect for headers */
+.contact-info h4::after, .social-media h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #00aaff; /* A vibrant accent color */
+}
+
+/* --- Contact Info List --- */
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info ul li {
+  margin-bottom: 15px;
+}
+
+.contact-info ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.contact-info ul li a:hover {
+  color: #cc6914; /* Highlight on hover */
+}
+
+.contact-info ul li i {
+  color: #cc6914; /* Accent color for icons */
+  font-size: 1.1em;
+  margin-right: 15px;
+  width: 20px; /* Ensures text aligns neatly */
+}
+
+/* --- Social Media Icons --- */
+.social-icons a {
+  color: #ccc;
+  font-size: 1.8em;
+  margin-right: 20px;
+  text-decoration: none;
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: inline-block; /* Needed for transform */
+}
+
+.social-icons a:hover {
+  color: #fff;
+  transform: scale(1.2); /* Makes icon slightly larger on hover */
+}
+
+/* --- Bottom Bar (Copyright & Last Modified) --- */
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 0.9em;
+  opacity: 0.7;
+}
+
+.footer-bottom p {
+  margin: 5px 0;
+}
+
+/* --- Responsive Design for Mobile --- */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column; /* Stack the columns vertically */
+    align-items: center;   /* Center the content */
+    text-align: center;
+  }
+
+  /* Center the header underline effect on mobile */
+  .contact-info h4::after, .social-media h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .contact-info ul li a {
+    justify-content: center; /* Center the links */
+  }
+
+  .social-media {
+    margin-top: 20px;
+  }
+
+  .social-icons a {
+    margin: 0 15px; /* Adjust social icon margin for mobile */
+  }
+}
   </style>
 </head>
 <body id="home">
@@ -152,16 +283,47 @@
   </a>
 </div>
 
-  <footer>
-    <div class="foot">
-      <p><a href="tel:+12085478375">📞 +1 208-547-8375</a></p>
-      <p><a href="mailto:swampdonkeymobilemechanics@gmail.com">✉ swampdonkeymobilemechanics@gmail.com</a></p>
-      <p>📍 <a href="https://www.google.com/maps/search/?api=1&query=235+S+4th+W+Rexburg%2C+ID+83440" target="_blank" rel="noopener">235 S 4th W Rexburg, ID 83440</a></p>
-      <p id="lastModified"></p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<footer>
+  <div class="footer-content">
+    <div class="contact-info">
+      <h4>Contact Us</h4>
+      <ul>
+        <li>
+          <a href="tel:+12085478375">
+            <i class="fa-solid fa-phone"></i> +1 208-547-8375
+          </a>
+        </li>
+        <li>
+          <a href="mailto:swampdonkeymobilemechanics@gmail.com">
+            <i class="fa-solid fa-envelope"></i> swampdonkeymobilemechanics@gmail.com
+          </a>
+        </li>
+        <li>
+          <a href="https://www.google.com/maps/search/?api=1&query=235+S+4th+W+Rexburg+ID+83440" target="_blank" rel="noopener">
+            <i class="fa-solid fa-location-dot"></i> 235 S 4th W Rexburg, ID 83440
+          </a>
+        </li>
+      </ul>
     </div>
-    <div class="media">
-      <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener" loading="lazy"><img src="images/fa.png" alt="facebook"></a>
-      <a id="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener" loading="lazy"><img src="images/insta.webp" alt="instagram"></a>
-      <a id="x" href="https://x.com/?lang=en" target="_blank" rel="noopener" loading="lazy"><img src="images/x.webp" alt="x"></a>
+    <div class="social-media">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://x.com/?lang=en" target="_blank" rel="noopener" aria-label="X (formerly Twitter)">
+          <i class="fa-brands fa-square-x-twitter"></i>
+        </a>
+      </div>
     </div>
-  </footer
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; <span id="currentYear"></span> Swamp Donkey Mobile Mechanics. All Rights Reserved.</p>
+    <p>Last Modified: <span id="lastModified"></span></p>
+  </div>
+</footer>
