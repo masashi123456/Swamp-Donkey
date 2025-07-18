@@ -1,15 +1,13 @@
-<!-- test -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
-  <meta charset="UTF-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Instant Quote - Swamp Donkey</title>
-  <link rel="icon" href="images/swamp-favicon.png" type="image/png">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" href="styles/consolidated.css">
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instant Quote - Swamp Donkey</title>
+  <link rel="icon" href="images/swamp-favicon.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="styles/consolidated.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -27,43 +25,30 @@
         to { opacity: 1; transform: translateY(0); }
     }
   </style>
-=======
-  <meta charset="UTF-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Instant Quote Generator - Swamp Donkey</title>
-  <link rel="icon" href="images/swamp-favicon.png" type="image/png">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" href="styles/base.css">
-  <link rel="stylesheet" href="styles/consolidated.css">
->>>>>>> 41cef906b2a8fe6b46bb01e968e416f2bf5c4c1c
-
 </head>
 <body class="slide-in" id="quote-image">
-  <header>
-    <a href="index.html">
-            <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
-        </a>
-  </header>
+  <header>
+    <a href="index.html">
+        <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
+    </a>
+  </header>
 
-  <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="quote.html">Quick Quote</a>
-    <a href="services.html">Services</a>
-    <a href="contact.html">Contact</a>
-    <a href="review.html">Reviews</a>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="quote.html">Quick Quote</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="review.html">Reviews</a>
     <a href="faq.html">FAQs</a>
-  </nav>
+  </nav>
 
-  <!-- New Quote Generator Functionality -->
-  <main class="quote-container">
-    <div class="quote-card bg-white p-8 rounded-lg shadow-md w-full max-w-2xl">
-      <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold main-heading">Instant Quote</h1>
-        <p class="text-gray-500 mt-2">Get a transparent, upfront estimate in just a few steps.</p>
-      </div>
+  <main class="quote-container">
+    <div class="quote-card bg-white p-8 rounded-lg shadow-md w-full max-w-2xl">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold main-heading">Instant Quote</h1>
+        <p class="text-gray-500 mt-2">Get a transparent, upfront estimate in just a few steps.</p>
+      </div>
 
-      <!-- Step 1: VIN Entry -->
       <div id="vinEntryContainer" class="space-y-4 fade-in">
           <div>
               <label for="vinInput" class="block text-sm font-medium text-gray-700 mb-1">Vehicle VIN</label>
@@ -75,7 +60,6 @@
           </div>
       </div>
 
-      <!-- Step 2: Service Selection -->
       <div id="serviceSelectorContainer" class="hidden space-y-6 fade-in">
           <div>
               <label for="vehicleType" class="block text-sm font-medium text-gray-700 mb-1">1. Select Vehicle Type</label>
@@ -100,224 +84,226 @@
           </div>
       </div>
 
-      <!-- Step 3: Quote Result -->
       <div id="quoteResult" class="mt-8"></div>
-    </div>
-  </main>
+    </div>
+  </main>
 
-  <!-- New Details Modal -->
-  <div id="detailsModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50">
-    <div class="bg-white rounded-lg shadow-xl p-6 sm:p-8 w-full max-w-lg transform transition-all" id="modalContent">
-      <h2 class="text-2xl font-bold text-gray-900 mb-2">Almost there!</h2>
-      <p class="text-gray-600 mb-6">Please provide a few more details to confirm your service request.</p>
-      <div class="space-y-4">
-        <input type="number" id="vehicleYear" placeholder="Vehicle Year (e.g., 2021)" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500">
-        <input type="text" id="vehicleMake" placeholder="Vehicle Make (e.g., Toyota)" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500">
-        <input type="text" id="vehicleModel" placeholder="Vehicle Model (e.g., Camry)" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500">
-        <input type="text" id="vehicleLocation" placeholder="Location of Vehicle (e.g., Your Address)" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500">
-        <input type="text" id="availability" placeholder="Select a Date & Time" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500">
-        
-        <p id="modalError" class="text-red-600 text-sm"></p>
+  <div id="detailsModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-lg shadow-xl p-6 sm:p-8 w-full max-w-lg transform transition-all" id="modalContent">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Almost there!</h2>
+      <p class="text-gray-600 mb-6">Please provide a few more details to confirm your service request.</p>
+      <div class="space-y-4">
+        <input type="number" id="vehicleYear" placeholder="Vehicle Year (e.g., 2021)" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500">
+        <input type="text" id="vehicleMake" placeholder="Vehicle Make (e.g., Toyota)" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500">
+        <input type="text" id="vehicleModel" placeholder="Vehicle Model (e.g., Camry)" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500">
+        <input type="text" id="vehicleLicensePlate" placeholder="License Plate Number" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500">
+        <input type="text" id="vehicleLocation" placeholder="Location of Vehicle (e.g., Your Address)" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500">
+        <input type="text" id="availability" placeholder="Select a Date & Time" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500">
+        
+        <p id="modalError" class="text-red-600 text-sm"></p>
 
-        <div class="flex flex-col sm:flex-row-reverse gap-3 pt-4">
-          <button id="confirmButton" class="w-full sm:w-auto bg-orange-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all">Confirm Request</button>
-          <button id="cancelButton" class="w-full sm:w-auto bg-gray-200 text-gray-800 font-semibold px-6 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition-all">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="flex flex-col sm:flex-row-reverse gap-3 pt-4">
+          <button id="confirmButton" class="w-full sm:w-auto bg-orange-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all">Confirm Request</button>
+          <button id="cancelButton" class="w-full sm:w-auto bg-gray-200 text-gray-800 font-semibold px-6 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition-all">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <footer>
-        <div class="foot">
-            <p><a href="tel:+12085478375">📞 +1 208-547-8375</a></p>
-            <p><a href="mailto:swampdonkeymobilemechanics@gmail.com">✉ swampdonkeymobilemechanics@gmail.com</a></p>
-            <p>📍 <a href="https://www.google.com/maps/search/?api=1&query=235+S+4th+W+Rexburg%2C+ID+83440" target="_blank" rel="noopener">235 S 4th W Rexburg, ID 83440</a></p>
-            <p id="lastModified"></p>
-        </div>
-        <div class="media">
-            <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener" loading="lazy"><img src="images/fa.png" alt="facebook"></a>
-            <a id="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener" loading="lazy"><img src="images/insta.webp" alt="instagram"></a>
-            <a id="x" href="https://x.com/?lang=en" target="_blank" rel="noopener" loading="lazy"><img src="images/x.webp" alt="x"></a>
-        </div>
-    </footer>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  
-  <!-- New JavaScript -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // --- DATA ---
-        const quoteData = {
-            "Common Maintenance": {
-                "Oil Change": { "Car": 75, "SUV": 95, "Truck": 110, "Commercial Vehicle": 150, description: "Includes high-quality synthetic blend oil and a new oil filter." },
-                "Tire Rotation": { "Car": 40, "SUV": 50, "Truck": 60, "Commercial Vehicle": 80, description: "Rotating tires to promote even wear and extend tire life." },
-                "Brake Inspection": { "Car": 50, "SUV": 60, "Truck": 70, "Commercial Vehicle": 90, description: "Comprehensive check of brake pads, rotors, calipers, and brake fluid." },
-                "Battery Check": { "Car": 30, "SUV": 40, "Truck": 50, "Commercial Vehicle": 60, description: "Testing battery health, voltage, and cleaning terminals." }
-            },
-            "Repairs & Diagnostics": {
-                "Check Engine Diagnostics": { "Car": 80, "SUV": 90, "Truck": 110, "Commercial Vehicle": 140, description: "Advanced diagnostic scan to identify engine fault codes." },
-                "Brake Replacement": { "Car": 250, "SUV": 300, "Truck": 350, "Commercial Vehicle": 450, description: "Full replacement of front or rear brake pads and rotors." },
-                "AC Repair": { "Car": 150, "SUV": 200, "Truck": 250, "Commercial Vehicle": 350, description: "Diagnosing and repairing air conditioning system issues (recharge not included)." }
-            },
-            "Emergency & Roadside Assistance": {
-                "Jump Start": { "Car": 40, "SUV": 50, "Truck": 60, "Commercial Vehicle": 80, description: "Safe and reliable battery jump start service to get you back on the road." },
-                "Towing": { "Car": "$100 - $300", "SUV": "$120 - $350", "Truck": "$150 - $400", "Commercial Vehicle": "$200 - $500", description: "Towing service to a safe location or repair shop. Price varies by distance." },
-                "Lockout Service": { "Car": 60, "SUV": 70, "Truck": 80, "Commercial Vehicle": 100, description: "Professional assistance to unlock your vehicle without damage." }
-            }
-        };
+  <footer>
+        <div class="foot">
+            <p><a href="tel:+12085478375">📞 +1 208-547-8375</a></p>
+            <p><a href="mailto:swampdonkeymobilemechanics@gmail.com">✉ swampdonkeymobilemechanics@gmail.com</a></p>
+            <p>📍 <a href="https://www.google.com/maps/search/?api=1&query=235+S+4th+W+Rexburg%2C+ID+83440" target="_blank" rel="noopener">235 S 4th W Rexburg, ID 83440</a></p>
+            <p id="lastModified"></p>
+        </div>
+        <div class="media">
+            <a id="facebook" href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener" loading="lazy"><img src="images/fa.png" alt="facebook"></a>
+            <a id="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener" loading="lazy"><img src="images/insta.webp" alt="instagram"></a>
+            <a id="x" href="https://x.com/?lang=en" target="_blank" rel="noopener" loading="lazy"><img src="images/x.webp" alt="x"></a>
+        </div>
+    </footer>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- DATA ---
+        const quoteData = {
+            "Common Maintenance": {
+                "Oil Change": { "Car": 75, "SUV": 95, "Truck": 110, "Commercial Vehicle": 150, description: "Includes high-quality synthetic blend oil and a new oil filter." },
+                "Tire Rotation": { "Car": 40, "SUV": 50, "Truck": 60, "Commercial Vehicle": 80, description: "Rotating tires to promote even wear and extend tire life." },
+                "Brake Inspection": { "Car": 50, "SUV": 60, "Truck": 70, "Commercial Vehicle": 90, description: "Comprehensive check of brake pads, rotors, calipers, and brake fluid." },
+                "Battery Check": { "Car": 30, "SUV": 40, "Truck": 50, "Commercial Vehicle": 60, description: "Testing battery health, voltage, and cleaning terminals." }
+            },
+            "Repairs & Diagnostics": {
+                "Check Engine Diagnostics": { "Car": 80, "SUV": 90, "Truck": 110, "Commercial Vehicle": 140, description: "Advanced diagnostic scan to identify engine fault codes." },
+                "Brake Replacement": { "Car": 250, "SUV": 300, "Truck": 350, "Commercial Vehicle": 450, description: "Full replacement of front or rear brake pads and rotors." },
+                "AC Repair": { "Car": 150, "SUV": 200, "Truck": 250, "Commercial Vehicle": 350, description: "Diagnosing and repairing air conditioning system issues (recharge not included)." }
+            },
+            "Emergency & Roadside Assistance": {
+                "Jump Start": { "Car": 40, "SUV": 50, "Truck": 60, "Commercial Vehicle": 80, description: "Safe and reliable battery jump start service to get you back on the road." },
+                "Towing": { "Car": "$100 - $300", "SUV": "$120 - $350", "Truck": "$150 - $400", "Commercial Vehicle": "$200 - $500", description: "Towing service to a safe location or repair shop. Price varies by distance." },
+                "Lockout Service": { "Car": 60, "SUV": 70, "Truck": 80, "Commercial Vehicle": 100, description: "Professional assistance to unlock your vehicle without damage." }
+            }
+        };
 
-        // --- DOM ELEMENTS ---
-        const vinEntryContainer = document.getElementById("vinEntryContainer");
-        const vinInput = document.getElementById("vinInput");
-        const vinError = document.getElementById("vinError");
-        const vinSubmitButton = document.getElementById("vinSubmitButton");
-        
-        const serviceSelectorContainer = document.getElementById("serviceSelectorContainer");
-        const vehicleTypeSelect = document.getElementById("vehicleType");
-        const serviceCategorySelect = document.getElementById("serviceCategory");
-        const specificServiceSelect = document.getElementById("specificService");
-        
-        const quoteResultDiv = document.getElementById("quoteResult");
-        
-        const detailsModal = document.getElementById("detailsModal");
-        const modalContent = document.getElementById("modalContent");
-        const modalError = document.getElementById("modalError");
-        const cancelButton = document.getElementById("cancelButton");
-        const confirmButton = document.getElementById("confirmButton");
+        // --- DOM ELEMENTS ---
+        const vinEntryContainer = document.getElementById("vinEntryContainer");
+        const vinInput = document.getElementById("vinInput");
+        const vinError = document.getElementById("vinError");
+        const vinSubmitButton = document.getElementById("vinSubmitButton");
+        
+        const serviceSelectorContainer = document.getElementById("serviceSelectorContainer");
+        const vehicleTypeSelect = document.getElementById("vehicleType");
+        const serviceCategorySelect = document.getElementById("serviceCategory");
+        const specificServiceSelect = document.getElementById("specificService");
+        
+        const quoteResultDiv = document.getElementById("quoteResult");
+        
+        const detailsModal = document.getElementById("detailsModal");
+        const modalContent = document.getElementById("modalContent");
+        const modalError = document.getElementById("modalError");
+        const cancelButton = document.getElementById("cancelButton");
+        const confirmButton = document.getElementById("confirmButton");
 
-        // --- STATE ---
-        let userVIN = "";
-        let currentQuoteDetails = {};
+        // --- STATE ---
+        let userVIN = "";
+        let currentQuoteDetails = {};
 
-        // --- FUNCTIONS ---
-        const populateCategories = () => {
-            serviceCategorySelect.innerHTML = '<option value="">-- Choose a Category --</option>';
-            Object.keys(quoteData).forEach(cat => {
-                const option = document.createElement('option');
-                option.value = cat;
-                option.textContent = cat;
-                serviceCategorySelect.appendChild(option);
-            });
-        };
+        // --- FUNCTIONS ---
+        const populateCategories = () => {
+            serviceCategorySelect.innerHTML = '<option value="">-- Choose a Category --</option>';
+            Object.keys(quoteData).forEach(cat => {
+                const option = document.createElement('option');
+                option.value = cat;
+                option.textContent = cat;
+                serviceCategorySelect.appendChild(option);
+            });
+        };
 
-        const populateServices = () => {
-            specificServiceSelect.innerHTML = '<option value="">-- Choose a Service --</option>';
-            quoteResultDiv.innerHTML = "";
-            const selectedCategory = serviceCategorySelect.value;
-            if (!quoteData[selectedCategory]) return;
-            
-            Object.keys(quoteData[selectedCategory]).forEach(service => {
-                const option = document.createElement('option');
-                option.value = service;
-                option.textContent = service;
-                specificServiceSelect.appendChild(option);
-            });
-        };
+        const populateServices = () => {
+            specificServiceSelect.innerHTML = '<option value="">-- Choose a Service --</option>';
+            quoteResultDiv.innerHTML = "";
+            const selectedCategory = serviceCategorySelect.value;
+            if (!quoteData[selectedCategory]) return;
+            
+            Object.keys(quoteData[selectedCategory]).forEach(service => {
+                const option = document.createElement('option');
+                option.value = service;
+                option.textContent = service;
+                specificServiceSelect.appendChild(option);
+            });
+        };
 
-        const displayQuote = () => {
-            const vehicle = vehicleTypeSelect.value;
-            const category = serviceCategorySelect.value;
-            const service = specificServiceSelect.value;
+        const displayQuote = () => {
+            const vehicle = vehicleTypeSelect.value;
+            const category = serviceCategorySelect.value;
+            const service = specificServiceSelect.value;
 
-            if (!vehicle || !category || !service || !quoteData[category]?.[service]) {
-                quoteResultDiv.innerHTML = "";
-                return;
-            }
+            if (!vehicle || !category || !service || !quoteData[category]?.[service]) {
+                quoteResultDiv.innerHTML = "";
+                return;
+            }
 
-            const { description } = quoteData[category][service];
-            const price = quoteData[category][service][vehicle];
-            const priceString = typeof price === "string" ? price : `$${price}`;
-            
-            currentQuoteDetails = { vehicle, service, priceString, description };
+            const { description } = quoteData[category][service];
+            const price = quoteData[category][service][vehicle];
+            const priceString = typeof price === "string" ? price : `$${price}`;
+            
+            currentQuoteDetails = { vehicle, service, priceString, description };
 
-            quoteResultDiv.innerHTML = `
-                <div class='bg-orange-50 p-6 rounded-lg border border-orange-200 fade-in'>
-                    <h3 class='text-lg font-semibold text-orange-900'>Your Estimated Quote</h3>
-                    <div class='my-3 text-5xl font-bold text-gray-900'>${priceString}</div>
-                    <p class="text-gray-600">${description}</p>
-                    <button id='orderNowButton' class='w-full bg-orange-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all mt-6'>Book This Service</button>
-                </div>
-            `;
-            
-            document.getElementById("orderNowButton").addEventListener('click', () => {
-                detailsModal.classList.remove('hidden');
-                detailsModal.classList.add('flex');
-            });
-        };
+            quoteResultDiv.innerHTML = `
+                <div class='bg-orange-50 p-6 rounded-lg border border-orange-200 fade-in'>
+                    <h3 class='text-lg font-semibold text-orange-900'>Your Estimated Quote</h3>
+                    <div class='my-3 text-5xl font-bold text-gray-900'>${priceString}</div>
+                    <p class="text-gray-600">${description}</p>
+                    <button id='orderNowButton' class='w-full bg-orange-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all mt-6'>Book This Service</button>
+                </div>
+            `;
+            
+            document.getElementById("orderNowButton").addEventListener('click', () => {
+                detailsModal.classList.remove('hidden');
+                detailsModal.classList.add('flex');
+            });
+        };
 
-        const handleVinSubmit = () => {
-            const vin = vinInput.value.trim().toUpperCase();
-            if (vin.length >= 11 && vin.length <= 17) {
-                userVIN = vin;
-                vinError.textContent = "";
-                vinEntryContainer.classList.add('hidden');
-                serviceSelectorContainer.classList.remove('hidden');
-                populateCategories();
-            } else {
-                vinError.textContent = "Please enter a valid VIN (11–17 characters).";
-                vinInput.focus();
-            }
-        };
+        const handleVinSubmit = () => {
+            const vin = vinInput.value.trim().toUpperCase();
+            if (vin.length >= 11 && vin.length <= 17) {
+                userVIN = vin;
+                vinError.textContent = "";
+                vinEntryContainer.classList.add('hidden');
+                serviceSelectorContainer.classList.remove('hidden');
+                populateCategories();
+            } else {
+                vinError.textContent = "Please enter a valid VIN (11–17 characters).";
+                vinInput.focus();
+            }
+        };
 
-        const handleConfirmation = () => {
-            const year = document.getElementById("vehicleYear").value.trim();
-            const make = document.getElementById("vehicleMake").value.trim();
-            const model = document.getElementById("vehicleModel").value.trim();
-            const location = document.getElementById("vehicleLocation").value.trim();
-            const availability = document.getElementById("availability").value.trim();
-            
-            if (!year || !make || !model || !location || !availability) {
-                modalError.textContent = "Please fill out all fields to confirm your request.";
-                return;
-            }
-            modalError.textContent = "";
+        const handleConfirmation = () => {
+            const year = document.getElementById("vehicleYear").value.trim();
+            const make = document.getElementById("vehicleMake").value.trim();
+            const model = document.getElementById("vehicleModel").value.trim();
+            // GET LICENSE PLATE VALUE
+            const licensePlate = document.getElementById("vehicleLicensePlate").value.trim().toUpperCase();
+            const location = document.getElementById("vehicleLocation").value.trim();
+            const availability = document.getElementById("availability").value.trim();
+            
+            // VALIDATE ALL FIELDS, INCLUDING LICENSE PLATE
+            if (!year || !make || !model || !licensePlate || !location || !availability) {
+                modalError.textContent = "Please fill out all fields to confirm your request.";
+                return;
+            }
+            modalError.textContent = "";
 
-            const message = `Service Request Details:\n\n- VIN: ${userVIN}\n- Vehicle Type: ${currentQuoteDetails.vehicle}\n- Service: ${currentQuoteDetails.service}\n- Estimated Quote: ${currentQuoteDetails.priceString}\n\nCustomer Details:\n- Vehicle: ${year} ${make} ${model}\n- Location: ${location}\n- Requested Time: ${availability}`;
-            
-            modalContent.innerHTML = `
-                <div class="text-center">
-                    <h2 class="text-2xl font-bold text-orange-700 mb-4">Request Sent!</h2>
-                    <p class="text-gray-600 mb-6">Thank you! We've received your request and will be in touch shortly.</p>
-                    <p class="text-sm text-gray-500">Redirecting you to our contact page...</p>
-                </div>
-            `;
+            // ADD LICENSE PLATE TO CONFIRMATION MESSAGE
+            const message = `Service Request Details:\n\n- VIN: ${userVIN}\n- License Plate: ${licensePlate}\n- Vehicle Type: ${currentQuoteDetails.vehicle}\n- Service: ${currentQuoteDetails.service}\n- Estimated Quote: ${currentQuoteDetails.priceString}\n\nCustomer Details:\n- Vehicle: ${year} ${make} ${model}\n- Location: ${location}\n- Requested Time: ${availability}`;
+            
+            modalContent.innerHTML = `
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold text-orange-700 mb-4">Request Sent!</h2>
+                    <p class="text-gray-600 mb-6">Thank you! We've received your request and will be in touch shortly.</p>
+                    <p class="text-sm text-gray-500">Redirecting you to our contact page...</p>
+                </div>
+            `;
 
-            setTimeout(() => {
-                window.location.href = `contact.html?message=${encodeURIComponent(message)}`;
-            }, 3000);
-        };
+            setTimeout(() => {
+                window.location.href = `contact.html?message=${encodeURIComponent(message)}`;
+            }, 3000);
+        };
 
-        const closeModal = () => {
-            detailsModal.classList.add('hidden');
-            detailsModal.classList.remove('flex');
-            modalError.textContent = "";
-        };
+        const closeModal = () => {
+            detailsModal.classList.add('hidden');
+            detailsModal.classList.remove('flex');
+            modalError.textContent = "";
+        };
 
-        // --- EVENT LISTENERS ---
-        vinSubmitButton.addEventListener('click', handleVinSubmit);
-        vinInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleVinSubmit();
-        });
+        // --- EVENT LISTENERS ---
+        vinSubmitButton.addEventListener('click', handleVinSubmit);
+        vinInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleVinSubmit();
+        });
 
-        serviceCategorySelect.addEventListener('change', populateServices);
-        vehicleTypeSelect.addEventListener('change', displayQuote);
-        specificServiceSelect.addEventListener('change', displayQuote);
+        serviceCategorySelect.addEventListener('change', populateServices);
+        vehicleTypeSelect.addEventListener('change', displayQuote);
+        specificServiceSelect.addEventListener('change', displayQuote);
 
-        cancelButton.addEventListener('click', closeModal);
-        confirmButton.addEventListener('click', handleConfirmation);
-        
-        detailsModal.addEventListener('click', (e) => {
-            if (e.target === detailsModal) closeModal();
-        });
+        cancelButton.addEventListener('click', closeModal);
+        confirmButton.addEventListener('click', handleConfirmation);
+        
+        detailsModal.addEventListener('click', (e) => {
+            if (e.target === detailsModal) closeModal();
+        });
 
-        // --- INITIALIZATION ---
-        flatpickr("#availability", {
-            enableTime: true,
-            dateFormat: "F j, Y at h:i K",
-            minDate: "today"
-        });
+        // --- INITIALIZATION ---
+        flatpickr("#availability", {
+            enableTime: true,
+            dateFormat: "F j, Y at h:i K",
+            minDate: "today"
+        });
 
-        document.getElementById("lastModified").textContent = `Last Updated: ${document.lastModified}`;
-    });
-  </script>
+        document.getElementById("lastModified").textContent = `Last Updated: ${document.lastModified}`;
+    });
+  </script>
 </body>
 </html>
