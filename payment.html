@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Payment - SWAMP DONKEY</title>
+    <meta name="author" content="David Lunceford, Masashi Ota, Ryan Griffin">
+    <meta name="description" content="Payment page for Swamp Donkey">
+    <link rel="icon" href="images/swamp-favicon.png" type="image/png">
+    <link rel="stylesheet" href="styles/consolidated.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/small.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #fcf4e2;
+        }
+        .payment-option {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .payment-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .qr-code {
+            max-width: 150px;
+            margin: 1rem auto;
+        }
+        .card-form input {
+            border: 1px solid #ced4da;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card-form input:focus {
+            border-color: #86b7fe;
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img id="logo" src="images/SWAMP DONKEY.png" alt="company logo">
+        </a>
+    </header>
+
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="quote.html">Quick Quote</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="review.html">Reviews</a>
+        <a href="faq.html">FAQs</a>
+    </nav>
+
+    <main class="py-12 md:py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-center text-gray-800 mb-4">Choose Your Payment Method</h1>
+            <p class="text-center text-gray-600 text-lg mb-12">Thank you for choosing Swamp Donkey! Please select your preferred way to pay.</p>
+
+            <!-- Peer-to-Peer Payment Options -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-center">
+                <!-- Venmo -->
+                <div class="payment-option bg-white p-8 rounded-xl shadow-lg">
+                    <img src="https://placehold.co/100x100/008CFF/FFFFFF?text=Venmo" alt="Venmo Logo" class="mx-auto mb-4 h-20 w-20 rounded-full">
+                    <h3 class="text-2xl font-bold text-gray-800">Venmo</h3>
+                    <p class="text-gray-600 my-2">@swamp-donkey</p>
+                    <img src="https://placehold.co/150x150/FFFFFF/000000?text=Scan+Me" alt="Venmo QR Code" class="qr-code">
+                </div>
+                <!-- Cash App -->
+                <div class="payment-option bg-white p-8 rounded-xl shadow-lg">
+                    <img src="https://placehold.co/100x100/00D632/FFFFFF?text=CashApp" alt="Cash App Logo" class="mx-auto mb-4 h-20 w-20 rounded-full">
+                    <h3 class="text-2xl font-bold text-gray-800">Cash App</h3>
+                    <p class="text-gray-600 my-2">$SwampDonkey</p>
+                    <img src="https://placehold.co/150x150/FFFFFF/000000?text=Scan+Me" alt="Cash App QR Code" class="qr-code">
+                </div>
+                <!-- PayPal -->
+                <div class="payment-option bg-white p-8 rounded-xl shadow-lg">
+                    <img src="https://placehold.co/100x100/00457C/FFFFFF?text=PayPal" alt="PayPal Logo" class="mx-auto mb-4 h-20 w-20 rounded-full">
+                    <h3 class="text-2xl font-bold text-gray-800">PayPal</h3>
+                    <p class="text-gray-600 my-2">paypal.me/swampdonkey</p>
+                    <img src="https://placehold.co/150x150/FFFFFF/000000?text=Scan+Me" alt="PayPal QR Code" class="qr-code">
+                </div>
+            </div>
+
+            <!-- Credit Card Payment Form -->
+            <div class="bg-white p-8 md:p-12 rounded-xl shadow-2xl">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Pay with Credit Card</h2>
+                <p class="text-center text-gray-500 mb-8">Securely enter your card details below.</p>
+                <form id="credit-card-form" class="card-form max-w-lg mx-auto">
+                    <div class="mb-4">
+                        <label for="card-name" class="block text-gray-700 font-semibold mb-2">Name on Card</label>
+                        <input type="text" id="card-name" name="card-name" class="w-full" placeholder="John M. Doe" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="card-number" class="block text-gray-700 font-semibold mb-2">Card Number</label>
+                        <input type="text" id="card-number" name="card-number" class="w-full" placeholder="•••• •••• •••• ••••" required>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="expiry-date" class="block text-gray-700 font-semibold mb-2">Expiration</label>
+                            <input type="text" id="expiry-date" name="expiry-date" class="w-full" placeholder="MM / YY" required>
+                        </div>
+                        <div>
+                            <label for="cvc" class="block text-gray-700 font-semibold mb-2">CVC</label>
+                            <input type="text" id="cvc" name="cvc" class="w-full" placeholder="•••" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-4 px-8 rounded-lg text-lg hover:bg-blue-700 transition-transform transform hover:scale-105 shadow-lg">
+                        Submit Payment
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-16">
+      <div class="footer-content">
+        <div class="contact-info">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><a href="tel:+12085478375"><i class="fa-solid fa-phone"></i> +1 208-547-8375</a></li>
+            <li><a href="mailto:swampdonkeymobilemechanics@gmail.com"><i class="fa-solid fa-envelope"></i> swampdonkeymobilemechanics@gmail.com</a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=235+S+4th+W+Rexburg+ID+83440" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> 235 S 4th W Rexburg, ID 83440</a></li>
+          </ul>
+        </div>
+        <div class="social-media">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/share/15zKQCcY5z/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://x.com/?lang=en" target="_blank" rel="noopener" aria-label="X (formerly Twitter)"><i class="fa-brands fa-square-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="currentYear"></span> Swamp Donkey Mobile Mechanics. All Rights Reserved.</p>
+        <p>Last Modified: <span id="lastModified"></span></p>
+      </div>
+    </footer>
+    <script>
+        // Populate current year and last modified date
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        document.getElementById('lastModified').textContent = document.lastModified;
+
+        // Basic form validation feedback
+        const form = document.getElementById('credit-card-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real application, you would integrate with a payment gateway like Stripe or Braintree here.
+            // For this example, we'll just show a confirmation message.
+            alert('Payment submitted successfully! (This is a demo)');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
